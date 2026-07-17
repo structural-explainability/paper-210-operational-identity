@@ -1,307 +1,123 @@
-$tex = ".\se210-operational-identity.tex"
+# ============================================================
+# SE_MANIFEST.toml (Repository Declaration)
+# ============================================================
 
-Select-String -LiteralPath $tex `
-  -SimpleMatch `
-  -Pattern "implementation" `
-  -Context 3,3
+schema = "se-manifest-schema"
+schema_version = "0.5.0"
+schema_url = "https://raw.githubusercontent.com/structural-explainability/se-manifest-schema/main/manifest-schema.toml"
 
-Exit 0
+# === Framework Context ===
 
-Select-String -LiteralPath $tex `
-  -SimpleMatch "object-level" `
-  -Context 3,3
+[meta]
+framework = "Structural Explainability"
+framework_url = "https://github.com/structural-explainability"
+purpose = "Declares this repository's role in the Structural Explainability ecosystem."
 
-Exit 0
+# === Repository Identity ===
 
-$citeKeys =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\cite[a-zA-Z*]*\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\cite[a-zA-Z*]*\{([^}]+)\}") {
-      $Matches[1] -split "," | ForEach-Object { $_.Trim() }
-    }
-  } |
-  Sort-Object -Unique
+[repository]
+organization = "structural-explainability"
+name = "paper-210-operational-identity"
+class = "paper"
+kind = "paper"
+status = "draft"
+since = "2026"
+summary = "Defines a finite audit comparing a record system's declared identity partition with operational identity partitions induced by examined implementation surfaces."
 
-$bibItemKeys =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\bibitem(?:\[[^\]]+\])?\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\bibitem(?:\[[^\]]+\])?\{([^}]+)\}") {
-      $Matches[1].Trim()
-    }
-  } |
-  Sort-Object -Unique
+# === Layer Position ===
 
-$unused =
-  $bibItemKeys |
-  Where-Object { $citeKeys -notcontains $_ }
+[layer]
+space = "structural-explainability"
+role = "justification-conformance"
 
-if ($unused) {
-  "UNUSED BIBITEM KEYS:"
-  $unused
-} else {
-  "OK: no unused bibitem keys."
-}
+# === Dependency Declarations ===
 
-exit 0
+[depends]
+required = [
+    { repo = "paper-100-neutral-substrate", kind = "semantic", reason = "Uses the stable-reference requirement, neutrality-by-design constraint, attribution boundary, and distinction between foundational reference and downstream interpretation established in Neutral Substrates." },
+    { repo = "paper-200-identity-regimes", kind = "semantic", reason = "Imports the transformation-family set, regime inventory, regime-relative classification functions, sibling relation, and induced co-reference construction used to compute declared and sibling identity partitions." },
+]
+optional = []
 
-$citeKeys =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\cite[a-zA-Z*]*\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\cite[a-zA-Z*]*\{([^}]+)\}") {
-      $Matches[1] -split "," | ForEach-Object { $_.Trim() }
-    }
-  } |
-  Sort-Object -Unique
+# === Provided Artifacts ===
 
-$bibItemKeys =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\bibitem(?:\[[^\]]+\])?\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\bibitem(?:\[[^\]]+\])?\{([^}]+)\}") {
-      $Matches[1].Trim()
-    }
-  } |
-  Sort-Object -Unique
+[provides]
+artifacts = [
+    "ANNOTATIONS.md",
+    "CITATION.cff",
+    "LICENSE",
+    "README.md",
+    "SE_MANIFEST.toml",
+    "se210-operational-identity.tex",
+]
 
-$missing =
-  $citeKeys |
-  Where-Object { $bibItemKeys -notcontains $_ }
+# === Scope ===
 
-$unused =
-  $bibItemKeys |
-  Where-Object { $citeKeys -notcontains $_ }
+[scope]
+includes = [
+    "declared identity partitions",
+    "operational identity partitions",
+    "operational rules of sameness",
+    "registered implementation artifacts",
+    "audited implementation surfaces",
+    "joint mechanisms over registered artifacts",
+    "identity-relevant uses of audited surfaces",
+    "record-indexed identity-treatment signatures",
+    "faithfulness by partition refinement",
+    "finite divergence witnesses",
+    "sibling-relative divergence classification",
+    "sibling-aligned divergence",
+    "sub-sibling divergence",
+    "super-sibling divergence",
+    "sibling-incomparable divergence",
+    "unpositioned divergence",
+    "global regime substitution",
+    "composition of surface faithfulness",
+    "three-valued audit verdicts",
+    "finite decidability",
+    "history-relative passing verdicts",
+    "non-monotonicity under transformation-history extension",
+    "artifact-completeness claims",
+    "surface-completeness claims",
+    "use-completeness claims",
+    "omitted-artifact witnesses",
+    "omitted-surface witnesses",
+    "omitted-use witnesses",
+    "disclosure-relative audit boundaries",
+    "legal-alignment worked example",
+]
 
-if ($missing) {
-  "MISSING BIBITEM KEYS:"
-  $missing
-} else {
-  "OK: all citation keys have matching \bibitem entries."
-}
+excludes = [
+    "selection of the substantively correct identity regime",
+    "certification that a declared identity basis is semantically correct",
+    "proof that disclosed implementation artifacts are complete",
+    "proof that audited implementation surfaces are complete",
+    "proof that all identity-relevant uses have been identified",
+    "automatic discovery of arbitrary implementation artifacts or surfaces",
+    "general source-code analysis method",
+    "general entity-resolution method",
+    "store-level conflation analysis for declared-distinct referents",
+    "identity behavior lacking a finite record-indexed encoding",
+    "adjudication among causal or normative interpretations",
+    "determination of legal authority or legal correctness",
+    "determination of responsibility or institutional legitimacy",
+    "complete provenance standard",
+    "replacement for existing record stores",
+    "production data format specification",
+    "binding implementation standard",
+    "upper-bound claim for identity regimes",
+    "completeness claim for transformation families",
+    "general theory of accountability",
+    "domain ontology design",
+]
 
-if ($unused) {
-  ""
-  "UNUSED BIBITEM KEYS:"
-  $unused
-}
+# === Citation ===
 
-exit 0
+[citation]
+cff = "CITATION.cff"
+preferred = "paper"
 
-$expected = @{
-  "DefRef"    = "^se100\.def\."
-  "AssumpRef" = "^se100\.assump\."
-  "ConstRef"  = "^se100\.constraint\."
-  "ExRef"     = "^se100\.example\."
-  "RemRef"    = "^se100\.remark\."
-  "NoteRef"   = "^se100\.note\."
-  "SecRef"    = "^sec:"
-}
+# === Traceability ===
 
-$refs =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\(DefRef|AssumpRef|ConstRef|ExRef|RemRef|NoteRef|SecRef)\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\(DefRef|AssumpRef|ConstRef|ExRef|RemRef|NoteRef|SecRef)\{([^}]+)\}") {
-      [PSCustomObject]@{
-        Macro      = $Matches[1]
-        Target     = $Matches[2]
-        LineNumber = $_.LineNumber
-        Line       = $_.Line.Trim()
-      }
-    }
-  }
-
-$wrongType =
-  $refs |
-  Where-Object {
-    $_.Target -notmatch $expected[$_.Macro]
-  }
-
-if ($wrongType) {
-  "CUSTOM REFERENCE TYPE MISMATCHES:"
-  $wrongType | Format-Table -AutoSize
-} else {
-  "OK: all custom references use the correct macro type."
-}
-
-exit 0
-
-$labels =
-  Select-String -LiteralPath $tex -Pattern "\\label\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\label\{([^}]+)\}") {
-      $Matches[1]
-    }
-  } |
-  Sort-Object -Unique
-
-$refs =
-  Select-String -LiteralPath $tex `
-    -Pattern "\\(DefRef|AssumpRef|ConstRef|ExRef|RemRef|NoteRef|SecRef)\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\(DefRef|AssumpRef|ConstRef|ExRef|RemRef|NoteRef|SecRef)\{([^}]+)\}") {
-      [PSCustomObject]@{
-        Macro      = $Matches[1]
-        Target     = $Matches[2]
-        LineNumber = $_.LineNumber
-        Line       = $_.Line.Trim()
-      }
-    }
-  }
-
-$missing =
-  $refs |
-  Where-Object { $labels -notcontains $_.Target }
-
-if ($missing) {
-  "MISSING CUSTOM REFERENCE TARGETS:"
-  $missing | Format-Table -AutoSize
-} else {
-  "OK: all custom reference targets exist."
-}
-
-Exit 0
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "neutral by design" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "neutrality by design" `
-  -Context 3,3
-
-Exit 0
-
-Select-String -LiteralPath $tex `
-  -Pattern "interpretive commitment|interpretive|commitments|interpretive content must|interpretive claims must" `
-  -Context 4,4
-
-Exit 0
-
-Select-String -LiteralPath $tex `
-  -Pattern "permitted attribution propositions|permitted attribution proposition|attribution propositions whose|attributional basis|grounded in|fixed by" `
-  -Context 3,3
-
-
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "provenance-bearing assertions" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "\\Asserts\(" `
-  -Context 2,2
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "\Asserts(x,\varphi)" `
-  -Context 2,2
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "\Asserts(\Framework" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "substrate-layer commitment[s]?" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "object-level causal or normative" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "object-level interpretive commitment[s]?" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "object-level interpretive" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "causal and normative content" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "C_{cn}" `
-  -Context 4,4
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "framework-invariant" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "uncertified at design time" `
-  -Context 4,4
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "neutral by design" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "neutrality by design" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "referential commitments" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "\SubstrateRef" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -SimpleMatch "attributional basis" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "boundary|contested reference|referential regime|unavailable" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "all interpretive|any interpretive|every interpretive|interpretive content must|interpretive claims must" `
-  -Context 4,4
-
-Select-String -LiteralPath $tex `
-  -Pattern "evidentiary|explanatory|justificatory|institutional conclusions|empirical" `
-  -Context 3,3
-
-Select-String -LiteralPath $tex `
-  -Pattern "\\label\{[^}]+\}" `
-  -Context 0,0
-
-Select-String -LiteralPath $tex -Pattern "\\label\{([^}]+)\}" |
-  ForEach-Object {
-    if ($_.Line -match "\\label\{([^}]+)\}") {
-      [PSCustomObject]@{ Label = $Matches[1]; LineNumber = $_.LineNumber; Line = $_.Line.Trim() }
-    }
-  } |
-  Group-Object Label |
-  Where-Object Count -gt 1 |
-  Format-Table -AutoSize
-
-Select-String -LiteralPath $tex `
-  -Pattern "\\(DefRef|AssumpRef|ConstRef|ExRef|RemRef|NoteRef|SecRef)\{" `
-  -Context 0,0
-
-Select-String -LiteralPath $tex `
-  -Pattern "committment|committments|substrate level|substrate-level" `
-  -Context 2,2
-
-Select-String -LiteralPath $tex `
-  -Pattern "contribution|biconditional|constraint|checkable" `
-  -Context 3,3
-
-@(
-  "provenance-bearing assertions",
-  "object-level causal or normative",
-  "substrate-layer commitment",
-  "\Asserts(x,\varphi)",
-  "\Asserts(\Framework",
-  "neutral by design",
-  "referential common ground",
-  "attributional basis"
-) | ForEach-Object {
-  $count = (Select-String -LiteralPath $tex -SimpleMatch $_).Count
-  [PSCustomObject]@{ Phrase = $_; Count = $count }
-} | Format-Table -AutoSize
+[traceability]
+identifier_map = "none"
