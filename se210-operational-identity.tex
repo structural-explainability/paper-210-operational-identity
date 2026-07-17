@@ -106,7 +106,7 @@ Northwest Missouri State University, Maryville, MO, USA}
   A mechanism is \emph{faithful} when the declared partition refines the operational partition, so no declared class is split.
   A \emph{divergence witness} is a pair the declaration merges and the mechanism separates; such witnesses are decidable by pair enumeration.
   When an imported sibling basis also splits a declared class, local comparison with its partition yields sibling-aligned, sub-sibling, super-sibling, or sibling-incomparable divergence.
-  This positioning reports only the relationship; it does not identify the basis carried by the mechanism.
+  This classification reports only the relationship; it does not identify the basis carried by the mechanism.
   Global equality of the operational and sibling partitions is defined separately as \emph{regime substitution} and does not follow from sibling alignment.
   A version field incremented on every textual edit inhabits the sub-sibling case by splitting declared classes more finely than either imported basis.
   The audit is three-valued and relative to the disclosed artifacts, evaluated surfaces, and identified uses; each boundary has a finite refuting witness.
@@ -281,9 +281,9 @@ while a merge does not,
 and supplies a finite divergence witness that refutes it.
 
 Third, where the sibling is informative on the examined domain,
-it positions divergence against the sibling partition
+it classifies divergence against the sibling partition
 in four local lattice cases,
-distinguishes that positioning from the global condition
+distinguishes that classification from the global condition
 under which the surface actually implements the sibling regime,
 and gives a finite version-field construction
 occupying the sub-sibling case.
@@ -1101,7 +1101,7 @@ under the containment order.
   Let \(r_0\) record a monitoring station at site \(\ell\) using sensor \(o_0\).
   A branch/fork creates two continuation records \(r_1\) and \(r_2\)
   for monitoring at the same site \(\ell\),
-  using distinct sensor objects \(o_1\) and \(o_2\).
+  using sensor objects \(o_1\) and \(o_2\), with \(o_0\), \(o_1\), and \(o_2\) carrying distinct serials.
   Let
   \[
     R=\{r_0,r_1,r_2\}
@@ -1111,16 +1111,16 @@ under the containment order.
     H
     =
     \bigl\langle
-    (\mathrm{BF},r_0,r_1),
-    (\mathrm{BF},r_0,r_2)
+    (\BF{},r_0,r_1),
+    (\BF{},r_0,r_2)
     \bigr\rangle.
   \]
 
   In the imported referential-regime interface,
   \[
-    \Class_{\LOC}(\mathrm{BF})=\PRS
+    \Class_{\LOC}(\BF{})=\PRS
     \qquad\text{and}\qquad
-    \Class_{\OBJ}(\mathrm{BF})=\BRK.
+    \Class_{\OBJ}(\BF{})=\BRK.
   \]
   Both fork edges are therefore non-breaking under \LOC{},
   giving
@@ -1655,14 +1655,14 @@ Restricting to the declared class gives
   \Dop\cup\bigl\{(r_0,r_2),(r_2,r_0)\bigr\},
 \]
 so \(\Dop\subsetneq\Dsib\).
-The position is sub-sibling divergence.
+The classification is sub-sibling divergence.
 
 The surface is not sibling-aligned,
 so by Proposition~\ref{oi.prop.substitution-witness}
 it does not exhibit regime substitution,
 and the audit reports no hidden identity regime.
 
-\subsection{Why the Position Changes the Repair}
+\subsection{Why the Classification Changes the Repair}
 
 Reported as sibling alignment, the finding invites one repair:
 declare structure-fixed rule identity and document the basis.
@@ -2200,7 +2200,7 @@ The contribution is the conjunction of five elements:
         between declared and operational partitions,
         with a finite witness refuting it,
         available for every regime in the inventory;
-  \item a four-way lattice positioning of divergence,
+  \item a four-way lattice classification of divergence,
         when the sibling is informative inside the declared classes,
         separated from the global condition of regime substitution
         that it does not imply,
@@ -2261,7 +2261,7 @@ which Definition~\ref{oi.def.precond} states as a precondition.
 An inaccurate or incomplete history prevents the artifact from representing the examined transformations,
 and the correct verdict is \INDET{}.
 
-Fifth, the positioning is relative to the imported inventory,
+Fifth, the classification is relative to the imported inventory,
 and it is local to the declared co-reference classes.
 When the sibling also splits an examined declared class,
 the four cases of Definition~\ref{oi.def.classification}
@@ -2334,10 +2334,9 @@ A version counter incremented on every textual edit
 splits declared classes strictly more finely than either imported basis.
 The worked version-field example therefore inhabits the sub-sibling case.
 
-
 The audit is decidable, three-valued, and disclosure-relative at three distinct levels:
-the artifacts represented in $(D_B)$, the surfaces included in $(A_B)$,
-and the identity-relevant uses identified in each $(U_d)$.
+the artifacts represented in \(D_B\), the surfaces included in \(A_B\),
+and the identity-relevant uses identified in each \(U_d\).
 Each level carries a completeness claim that the procedure cannot discharge and a finite witness that refutes it.
 
 A passing verdict is also history-relative.
