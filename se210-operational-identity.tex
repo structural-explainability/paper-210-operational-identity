@@ -44,6 +44,7 @@
 % Transformation classifications
 \newcommand{\PRS}{\ensuremath{\mathsf{PRS}}}
 \newcommand{\BRK}{\ensuremath{\mathsf{BRK}}}
+\newcommand{\BF}{\ensuremath{\mathsf{BF}}}
 \newcommand{\NEU}{\ensuremath{\mathsf{NEU}}}
 \newcommand{\NAcls}{\ensuremath{\mathsf{N/A}}}
 
@@ -616,7 +617,7 @@ The audit must first say what makes a mechanism identity-bearing.
   The registry is what makes a surface an artifact of the implementation
   rather than an artifact of the audit.
   A candidate mechanism must be exhibitable:
- the auditor must be able to identify the implementation artifact that carries it.
+  the auditor must be able to identify the implementation artifact that carries it.
 \end{remark}
 
 \begin{definition}[Joint Mechanism]
@@ -1097,16 +1098,60 @@ under the containment order.
 
 \begin{example}[A Forked Continuation on the Locus/Object Axis]
   \label{oi.ex.loc-obj-fork}
-  Let \(R=\{r_0,r_1\}\), where \(r_0\) records a monitoring station at site \(\ell\) using sensor \(o_0\).
-  A branch/fork produces \(r_1\), a continuation at the same site using a non-identical replacement sensor \(o_1\).
-  Under \LOC{}, the locus is preserved, so \(r_0\sim_{\LOC}r_1\).
-  Under \OBJ{}, the object is not preserved, so \(r_0\not\sim_{\OBJ}r_1\).
+  Let \(r_0\) record a monitoring station at site \(\ell\) using sensor \(o_0\).
+  A branch/fork creates two continuation records \(r_1\) and \(r_2\)
+  for monitoring at the same site \(\ell\),
+  using distinct sensor objects \(o_1\) and \(o_2\).
+  Let
+  \[
+    R=\{r_0,r_1,r_2\}
+  \]
+  and
+  \[
+    H
+    =
+    \bigl\langle
+    (\mathrm{BF},r_0,r_1),
+    (\mathrm{BF},r_0,r_2)
+    \bigr\rangle.
+  \]
+
+  In the imported referential-regime interface,
+  \[
+    \Class_{\LOC}(\mathrm{BF})=\PRS
+    \qquad\text{and}\qquad
+    \Class_{\OBJ}(\mathrm{BF})=\BRK.
+  \]
+  Both fork edges are therefore non-breaking under \LOC{},
+  giving
+  \[
+    \pi_{\LOC}
+    =
+    \bigl\{\{r_0,r_1,r_2\}\bigr\}.
+  \]
+  Both are breaking under \OBJ{},
+  giving
+  \[
+    \pi_{\OBJ}
+    =
+    \bigl\{\{r_0\},\{r_1\},\{r_2\}\bigr\}.
+  \]
 
   Suppose the declared regime is \LOC{}.
-  Let \(d\) be the registered sensor-serial field, with a referent-identifier use that assigns a distinct station identifier to each serial value.
-  Then \(\IT_d(r_0)\neq\IT_d(r_1)\), so \((r_0,r_1)\) is a divergence witness.
-  On this domain, \(\pi_d=\pi_{\OBJ}\).
-  The divergence is therefore sibling-aligned, and the surface exhibits regime substitution.
+  Let \(d\) be the registered sensor-serial field,
+  with a referent-identifier use that assigns
+  a distinct station identifier to each sensor serial,
+  so the station's referent identifier follows the sensor object.
+  Then
+  \[
+    \pi_d=\pi_{\OBJ}.
+  \]
+  The pair \((r_0,r_1)\) is a divergence witness,
+  because the declaration merges it
+  and the surface separates it.
+  The divergence is sibling-aligned,
+  and the equality \(\pi_d=\pi_{\OBJ}\)
+  establishes regime substitution.
 \end{example}
 
 Regime substitution is a global condition on \(R\),
@@ -1944,7 +1989,7 @@ and the surface responsible is then one the audit examined and cleared.
 Audit findings therefore have five distinct scopes.
 A divergence witness for a surface in \(A_B\)
 identifies a fault in the examined implementation,
-positioned by Definition~\ref{oi.def.classification}.
+classified by Definition~\ref{oi.def.classification}.
 An omitted-mechanism witness
 identifies an incomplete account of the implementation boundary.
 An omitted-surface witness
@@ -2193,8 +2238,8 @@ the registry constraint cannot be dropped.
 Second, the audit is relative to the surfaces it evaluated.
 Registry completeness does not entail that every surface
 over the registered artifacts was placed in \(A_B\).
-A use jointly controlled by two registered fields, factoring through neither alone.
-That surface may split a declared co-reference class
+A use jointly controlled by two registered fields may factor through neither alone,
+so the surface carrying it may split a declared co-reference class
 while each constituent field, taken alone, splits nothing.
 The audit may not have included that joint surface in \(A_B\),
 so every evaluated singleton surface can pass while the omitted joint surface fails.
@@ -2226,7 +2271,7 @@ and say nothing about pairs it separates.
 Otherwise the divergence is unpositioned.
 Sibling alignment does not establish regime substitution,
 by Proposition~\ref{oi.prop.aligned-not-substitution},
-and no case of the positioning names the basis
+and no case of the classification names the basis
 the implementation carries.
 Identifying that basis remains work for the auditor.
 
@@ -2244,7 +2289,7 @@ by extending the history alone,
 with the record domain held fixed.
 A surface faithful on the examined artifact
 may diverge on a larger one,
-and the position of a divergence may change with it.
+and the classification of a divergence may change with it.
 
 Eighth, the procedure decides no downstream substantive question.
 It does not choose the correct identity basis,
