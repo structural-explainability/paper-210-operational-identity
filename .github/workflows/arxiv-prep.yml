@@ -1,0 +1,112 @@
+# WHY: Prepares clean source package for arXiv submission
+# OBS: Removes build artifacts and CI files that arXiv doesn't need
+# REQ: Create account on arxiv.org and start a paper submission before using this
+# ALT: Manual trigger only, use as needed to publish new versions on arXiv
+
+name: Prepare arXiv Source
+
+on:
+  workflow_dispatch: # WHY: Manual trigger only
+
+jobs:
+  arxiv-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ============================================================
+      # ASSEMBLE: Get code and set up environment
+      # ============================================================
+
+      - name: A1) Checkout repository code
+        # WHY: Needed to access files for checks.
+        uses: actions/checkout@v7
+
+      # WHY: Install TeX Live in CI in a maintainable way
+      # OBS: This action installs tlmgr, but does not install TeX packages unless specified
+      - name: A2) Setup TeX Live
+        uses: TeX-Live/setup-texlive-action@v4
+        with:
+          package-file: .github/tl_packages
+          cache: true
+
+      - name: A3) Confirm TeX binaries available
+        run: |
+          set -e
+          kpsewhich authblk.sty
+          which pdflatex
+          pdflatex --version
+          which latexmk
+          latexmk --version
+
+      # ============================================================
+      # === DEPLOY: Build and deploy ===
+      # ============================================================
+
+      # WHY: Create clean staging area with only files arXiv needs
+      - name: D1) Create staging directory
+        run: |
+          mkdir -p arxiv_src
+
+          # WHY: Copy main tex file
+          cp se210-operational-identity.tex arxiv_src/
+
+          # # WHY: Include .bbl if present to reduce arXiv bibliography failures
+          # # OBS: This is a no-op if file does not exist
+          # if [ -f se210-operational-identity.bbl ]; then
+          #   cp se210-operational-identity.bbl arxiv_src/
+          # fi
+
+      # WHY: arXiv builds from source - doesn't need build artifacts
+      - name: D2) Clean auxiliary files
+        working-directory: arxiv_src
+        run: |
+          # WHY: Remove LaTeX auxiliary files from local builds
+          # OBS: Keep .bbl if present (do not remove) so arXiv build is deterministic
+          find . -type f \( \
+            -name "*.aux" -o -name "*.log"  -o -name "*.out"  -o -name "*.toc" -o \
+            -name "*.bcf"  -o -name "*.blg"  -o -name "*.run.xml" -o \
+            -name "*.fls" -o -name "*.fdb_latexmk" -o -name "*.synctex.gz" \
+          \) -delete
+
+      # WHY: Debugging step to verify contents of staging area before zipping
+      - name: D3) Debug list arXiv source files
+        shell: bash
+        run: |
+          set -e
+          echo "Staged arXiv source:"
+          find arxiv_src -maxdepth 2 -type f -print | sort
+
+      # WHY: arXiv requires submission as zip file
+      - name: D4) Create arXiv source zip
+        run: |
+          cd arxiv_src
+          zip -r ../arxiv-source.zip .
+
+      # WHY: Download this artifact to upload to arxiv.org
+      - name: D5) Upload arXiv source artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: arxiv-source
+          path: arxiv-source.zip
+          if-no-files-found: error
+
+      # WHY: Build PDF from the staged arXiv source for manual verification
+      # OBS: Runs after zip creation so the PDF is not included in arxiv-source.zip
+      - name: D6) Build PDF for verification
+        working-directory: arxiv_src
+        run: |
+          set -e
+          rm -f se210-operational-identity.pdf
+          latexmk -g -pdf -interaction=nonstopmode -halt-on-error \
+            se210-operational-identity.tex
+          test -f se210-operational-identity.pdf
+
+      # WHY: Provide a compiled PDF for manual verification before arXiv submission
+      # OBS: This PDF is NOT included in the arXiv source zip
+      - name: D7) Upload compiled PDF
+        uses: actions/upload-artifact@v7
+        with:
+          name: compiled-pdf
+          path: arxiv_src/se210-operational-identity.pdf
+          retention-days: 7
+          if-no-files-found: error

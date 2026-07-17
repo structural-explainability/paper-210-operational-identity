@@ -1,0 +1,128 @@
+# ============================================================
+# SE_MANIFEST.toml (Repository Declaration)
+# ============================================================
+
+schema = "se-manifest-schema"
+schema_version = "0.5.0"
+schema_url = "https://raw.githubusercontent.com/structural-explainability/se-manifest-schema/main/manifest-schema.toml"
+
+# === Framework Context ===
+
+[meta]
+framework = "Structural Explainability"
+framework_url = "https://github.com/structural-explainability"
+purpose = "Declares this repository's role in the Structural Explainability ecosystem."
+
+# === Repository Identity ===
+
+[repository]
+organization = "structural-explainability"
+name = "paper-210-operational-identity"
+class = "paper"
+kind = "paper"
+status = "draft"
+since = "2026"
+summary = "Defines operational identity partitions and a finite audit comparing the identity regime declared by a record system with the identity-relevant treatment induced by examined implementation surfaces."
+
+# === Layer Position ===
+
+[layer]
+space = "structural-explainability"
+role = "justification-conformance"
+
+# === Dependency Declarations ===
+
+[depends]
+required = [
+    { repo = "paper-100-neutral-substrate", kind = "semantic", reason = "Uses the stable-reference requirement, neutrality-by-design constraint, attribution boundary, and distinction between foundational reference and downstream interpretation established in Neutral Substrates." },
+    { repo = "paper-200-identity-regimes", kind = "semantic", reason = "Imports the transformation-family set, regime inventory, regime-relative classification functions, sibling relation, and induced co-reference construction used to compute declared and sibling identity partitions." },
+]
+optional = []
+
+# === Provided Artifacts ===
+
+[provides]
+artifacts = [
+    "ANNOTATIONS.md",
+    "CITATION.cff",
+    "LICENSE",
+    "README.md",
+    "SE_MANIFEST.toml",
+    "se210-operational-identity.tex",
+]
+
+# === Scope ===
+
+[scope]
+includes = [
+    "declared identity partitions",
+    "operational identity partitions",
+    "operational rules of sameness",
+    "mechanism registries",
+    "joint mechanisms",
+    "examined audit-surface families",
+    "identity-relevant outcome types",
+    "record-indexed identity-treatment signatures",
+    "surface-control factorization",
+    "faithfulness by partition refinement",
+    "finite divergence witnesses",
+    "sibling-relative divergence positioning",
+    "sibling-aligned divergence",
+    "sub-sibling divergence",
+    "super-sibling divergence",
+    "sibling-incomparable divergence",
+    "global regime substitution",
+    "hidden identity regimes as global partition equality",
+    "store operational partitions",
+    "composition of surface faithfulness",
+    "three-valued audit verdicts",
+    "finite decidability",
+    "history-relative passing verdicts",
+    "non-monotonicity under transformation-history extension",
+    "registry-completeness claims",
+    "examined-family-completeness claims",
+    "use-completeness claims",
+    "omitted-mechanism witnesses",
+    "omitted-surface witnesses",
+    "omitted-use witnesses",
+    "disclosure-relative audit boundaries",
+    "imported referential-regime interface",
+    "downstream reevaluation after referential-regime interface revision",
+    "legal-alignment worked example",
+    "integration with provenance, schema, workflow, configuration, and versioning artifacts",
+]
+
+excludes = [
+    "selection of the substantively correct identity regime",
+    "certification that a declared identity basis is semantically correct",
+    "proof that a mechanism registry is complete",
+    "proof that an examined surface family is complete",
+    "proof that all identity-relevant uses have been identified",
+    "automatic discovery of arbitrary implementation mechanisms",
+    "general source-code analysis method",
+    "general entity-resolution method",
+    "store-level conflation analysis for declared-distinct referents",
+    "identity behavior lacking a finite record-indexed encoding",
+    "adjudication among causal or normative interpretations",
+    "determination of legal authority or legal correctness",
+    "determination of responsibility or institutional legitimacy",
+    "complete provenance standard",
+    "replacement for existing record stores",
+    "production data format specification",
+    "binding implementation standard",
+    "upper-bound claim for identity regimes",
+    "completeness claim for transformation families",
+    "general theory of accountability",
+    "domain ontology design",
+]
+
+# === Citation ===
+
+[citation]
+cff = "CITATION.cff"
+preferred = "paper"
+
+# === Traceability ===
+
+[traceability]
+identifier_map = "none"

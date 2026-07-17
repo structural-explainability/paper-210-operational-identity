@@ -1,0 +1,94 @@
+# ============================================================
+# CITATION.cff (How to cite this project)
+# ============================================================
+
+# REQ.UNIVERSAL: Professional open projects SHOULD include CITATION.cff.
+# WHY: Support correct citation and attribution.
+# ALT: Internal or private repositories may omit citation metadata.
+# CUSTOM: Update author, repository, license, and keyword fields as needed.
+# USAGE: See https://citation-file-format.github.io/ for details.
+
+cff-version: "1.2.0"
+type: software
+message: "If you use this work, please cite the paper below."
+
+title: "Operational Identity: A Finite Audit of Declared and Implemented Rules of Sameness"
+version: "0.1.0"
+date-released: "2026-07-14"
+
+authors:
+  - family-names: Case
+    given-names: Denise M.
+    orcid: "https://orcid.org/0000-0001-6165-7389"
+    affiliation: "Northwest Missouri State University, School of Computer Science and Information Systems, Maryville, MO, USA"
+
+repository-code: "https://github.com/structural-explainability/paper-210-operational-identity"
+license: "CC-BY-4.0"
+
+abstract: >
+  This repository contains the source materials for Operational Identity:
+  A Finite Audit of Declared and Implemented Rules of Sameness. The paper
+  distinguishes the identity regime declared by a record system from the
+  identity-relevant treatment induced by its implementation. A declared
+  identity regime partitions a finite record domain into co-reference classes.
+  An examined implementation surface induces an operational identity partition
+  through its identity-relevant outcomes. Comparing the declared and
+  operational partitions yields a finite audit of faithfulness. A divergence
+  witness is a pair of records that the declaration merges and the
+  implementation separates. Where an alternative imported identity basis is
+  available, divergence is positioned relative to the sibling partition as
+  sibling-aligned, sub-sibling, super-sibling, or sibling-incomparable.
+  The paper also distinguishes local sibling alignment from global regime
+  substitution, proves that faithfulness composes across an examined family of
+  surfaces, and shows that a passing verdict is not monotone under extension of
+  the transformation history. The audit is three-valued and
+  disclosure-relative over the implementation artifacts disclosed, the
+  surfaces evaluated, and the identity-relevant uses identified for each
+  surface.
+
+keywords:
+  - operational identity
+  - identity regimes
+  - identity basis
+  - co-reference
+  - record systems
+  - partition refinement
+  - partition lattice
+  - divergence witness
+  - regime substitution
+  - implementation audit
+  - transformation history
+  - provenance
+  - stable reference
+  - disclosure-relative audit
+  - structural explainability
+
+preferred-citation:
+  type: article
+  title: "Operational Identity: A Finite Audit of Declared and Implemented Rules of Sameness"
+  authors:
+    - family-names: Case
+      given-names: Denise M.
+      orcid: "https://orcid.org/0000-0001-6165-7389"
+      affiliation: "Northwest Missouri State University, School of Computer Science and Information Systems, Maryville, MO, USA"
+  year: 2026
+  url: "https://github.com/structural-explainability/paper-210-operational-identity"
+
+references:
+  - type: article
+    title: "Neutral Substrates: A Design Constraint for Shared Records Under Persistent Interpretive Disagreement"
+    authors:
+      - family-names: Case
+        given-names: Denise M.
+        orcid: "https://orcid.org/0000-0001-6165-7389"
+    doi: "10.48550/arXiv.2601.14271"
+    url: "https://doi.org/10.48550/arXiv.2601.14271"
+
+  - type: article
+    title: "Referential Regimes: Transformation-Invariant Identity for Neutral Substrates"
+    authors:
+      - family-names: Case
+        given-names: Denise M.
+        orcid: "https://orcid.org/0000-0001-6165-7389"
+    doi: "10.48550/arXiv.2601.16152"
+    url: "https://doi.org/10.48550/arXiv.2601.16152"
