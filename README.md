@@ -47,6 +47,10 @@ Get-ChildItem -Path . -Recurse -File | Unblock-File
 .\tools\build\build.ps1
 ```
 
+## Supporting Links
+
+- [Operational Indentity: Finite Check Repository](https://doi.org/10.5281/zenodo.21499598)
+
 ## Annotations
 
 [ANNOTATIONS.md](./ANNOTATIONS.md)

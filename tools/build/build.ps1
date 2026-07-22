@@ -158,7 +158,7 @@ if (-not $NoClean) {
 # Build Standard (fail-fast)
 # -----------------------------------------------------------------------------
 
-Invoke-OrStop { Build-Paper -PaperDir $PaperDir -TexFile $PaperTex -Name "Paper: Neutral Substrates" -RepoRoot $RepoRoot } `
+Invoke-OrStop { Build-Paper -PaperDir $PaperDir -TexFile $PaperTex -Name "Paper" -RepoRoot $RepoRoot } `
     "Stopping: Paper standard build failed."
 
 Write-Ok ""
