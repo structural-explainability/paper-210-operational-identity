@@ -8,10 +8,9 @@
 > Defines a finite audit comparing a record system's declared rule of sameness
 > with the rule of sameness induced by its implementation.
 
-## Status
+## Purpose
 
-Draft.
-This repository contains the working source for the third paper in the
+This repository contains the source for the third paper in the
 Structural Explainability paper series.
 
 ## Prior Papers
@@ -19,7 +18,7 @@ Structural Explainability paper series.
 - [Neutral Substrates](https://github.com/structural-explainability/paper-100-neutral-substrate)
 - [Referential Regimes](https://github.com/structural-explainability/paper-200-identity-regimes)
 
-## Draft Paper
+## Current Version
 
 - [PDF](./se210-operational-identity.pdf)
 
@@ -49,7 +48,7 @@ Get-ChildItem -Path . -Recurse -File | Unblock-File
 
 ## Supporting Links
 
-- [Operational Indentity: Finite Check Repository](https://doi.org/10.5281/zenodo.21499598)
+- [Operational Identity: Finite Check Repository](https://doi.org/10.5281/zenodo.21499598)
 
 ## Annotations
 
