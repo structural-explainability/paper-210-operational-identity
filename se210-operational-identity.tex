@@ -86,7 +86,7 @@ Rules of Sameness
 }
 
 \author{Denise M. Case}
-\affil{\small Department of Computer Science and Information Systems\\
+\affil{\small School of Computer Science and Information Systems\\
 Northwest Missouri State University, Maryville, MO, USA}
 \date{}
 
@@ -250,8 +250,8 @@ that the operational partition equals the sibling partition on the whole domain,
 is defined separately as \emph{regime substitution},
 and Proposition~\ref{oi.prop.aligned-not-substitution}
 shows sibling alignment does not imply it.
-Regime substitution is the condition an earlier formulation of this result
-named the hidden identity regime.
+Regime substitution is the formal condition under which
+a surface implements a hidden identity regime.
 
 The worked version-field example occupies
 the sub-sibling case rather than the aligned one.
@@ -260,7 +260,7 @@ splits declared co-reference classes strictly more finely than the sibling.
 Section~\ref{oi.sec.worked} exhibits that case,
 and Proposition~\ref{oi.prop.witness-not-alignment}
 proves it cannot be told from sibling alignment by any single witness pair.
-Diagnosing it as a hidden sibling regime would prescribe the wrong repair.
+Diagnosing it as regime substitution would prescribe the wrong repair.
 
 The audit extends to the three regimes with no sibling.
 Faithfulness and divergence are defined for every regime in the inventory.
@@ -1103,7 +1103,7 @@ under the containment order.
   and none of them asserts that the surface implements a named basis.
 \end{remark}
 
-\begin{definition}[Regime Substitution and Hidden Identity Regime]
+\begin{definition}[Regime Substitution]
   \label{oi.def.regime-substitution}
   A surface \(d\) exhibits \emph{regime substitution} on \(R\)
   when \(\Sib(\tau)=\tau'\neq\varnothing\),
@@ -1181,11 +1181,11 @@ under the containment order.
   establishes regime substitution.
 \end{example}
 
-Regime substitution is a global condition on \(R\),
-and it is the condition an earlier formulation of this result
-treated as the whole of it.
-The next subsection separates it from sibling alignment
-and from a single witness pair.
+Regime substitution is a global equality condition on \(R\).
+It is distinct from sibling alignment, which compares the relations
+only within declared identity classes.
+The next subsection shows that neither sibling alignment
+nor a single divergence witness establishes it.
 
 \subsection{Neither a Witness nor an Alignment Diagnoses}
 
@@ -1220,7 +1220,7 @@ and from a single witness pair.
   is sibling-aligned divergence.
 \end{proof}
 
-\begin{remark}[A Hidden Sibling Regime Need Not Be a Splitting Fault]
+\begin{remark}[Regime Substitution Need Not Produce a Splitting Fault]
   \label{oi.rem.merging-substitution}
   The hypothesis of Proposition~\ref{oi.prop.substitution-witness}
   is not implied by the requirement that the regimes differ on \(R\),
@@ -1482,15 +1482,6 @@ Propositions~\ref{oi.prop.aligned-not-substitution}
 and~\ref{oi.prop.witness-not-alignment}
 bound the diagnostic strength of the audit from both sides.
 A witness does not establish a classification, and
-a classification does not establish a basis.
-The audit establishes that the declaration and the implementation
-disagree and, when the sibling comparison is informative,
-where their disagreement lies in the lattice.
-
-Propositions~\ref{oi.prop.aligned-not-substitution}
-and~\ref{oi.prop.witness-not-alignment}
-bound the diagnostic strength of the audit from both sides.
-A witness does not establish a classification and
 a classification does not establish a basis.
 The audit establishes that the declaration and the implementation
 disagree and, when the sibling comparison is informative,
