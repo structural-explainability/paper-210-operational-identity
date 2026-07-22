@@ -97,9 +97,12 @@ Northwest Missouri State University, Maryville, MO, USA}
 % arxiv allows 1920 char for meta abstract
 \begin{abstract}
   A record system declares when two records refer to the same entity, occurrence, scope, or rule.
-  Its implementation answers the same identity question through disclosed implementation mechanisms.
-  The two answers may diverge systematically without producing a provenance gap or detectable contradiction.
-  This paper formalizes the implemented answer.
+  Its disclosed implementation mechanisms induce a corresponding operational identity relation.
+  The declared and implemented relations may diverge systematically
+  without producing a provenance gap or detectable contradiction.
+  A system can apply, consistently and with every record individually correct,
+  a rule of sameness that no artifact declares.
+  This paper formalizes that implemented relation.
   A declared identity regime partitions a finite record domain into co-reference classes;
   a disclosed mechanism, through its typed identity-relevant outcomes, induces an \emph{operational identity partition} of the same domain.
   The audit compares these partitions in the refinement lattice.
@@ -316,7 +319,8 @@ Section~\ref{oi.sec.procedure} gives decidability, the verdict, and non-monotoni
 Section~\ref{oi.sec.worked} works a legal-alignment example.
 Section~\ref{oi.sec.disclosure} states the disclosure boundary.
 Section~\ref{oi.sec.related} situates the result.
-Section~\ref{oi.sec.limits} states its limits.
+Section~\ref{oi.sec.limits} states its limits, and
+Section~\ref{oi.sec.conclusion} concludes.
 
 % =============================================================================
 \section{Imported Interface and Preconditions}
@@ -657,7 +661,7 @@ in which case the implementation has itself disclosed a mechanism that does so.
     \item \emph{referent persistence:}
           whether a referent is continued, retired, or created;
     \item \emph{transformation treatment:}
-          a finite canonical encoding
+          a finite record-indexed encoding
           of the transformation family
           or identity effect applied to the record
           within the examined history;
@@ -699,8 +703,20 @@ in which case the implementation has itself disclosed a mechanism that does so.
   A pairwise co-reference procedure may be represented,
   over finite \(R\), by the vector of its decisions against the records of \(R\)
   under a fixed order.
-  A transformation-level procedure may be represented by a finite canonical encoding
+  A transformation-level procedure may be represented by a fixed finite record-indexed encoding
   of the identity-relevant transformation outcomes incident to each record.
+
+  This encoding is part of the surface's identified use:
+  it must be a total function of the record
+  factoring through the mechanism value
+  in the sense of Definition~\ref{oi.def.surface}(c),
+  and the operational partition
+  induced by a transformation-treatment outcome
+  is defined relative to it.
+  Two auditors who fix different such encodings
+  evaluate different uses,
+  and the disclosure-relativity of
+  Section~\ref{oi.sec.disclosure} already ranges over that choice.
 
   When no finite total record-indexed encoding is available,
   the procedure does not induce the operational partition defined here,
@@ -840,6 +856,17 @@ so an auditor who exhibits the former has already exhibited the latter.
 The witness of Section~\ref{oi.sec.compare}
 therefore needs no separate clause on mechanism values,
 and reports them as evidence rather than requiring them as a condition.
+
+The same fact disposes of the boundary case in
+Definition~\ref{oi.def.joint}.
+A joint mechanism whose value separates every pair of records,
+that is, the case in which the registry is itself injective,
+still induces \(\pi_d\) through its uses,
+and those uses may merge records the value distinguishes.
+Value injectivity therefore splits no declared class on its own,
+and excluding the record-identity function (Remark~\ref{oi.rem.registry})
+costs the auditor nothing on a system
+that has genuinely disclosed a pair-separating mechanism.
 
 % =============================================================================
 \section{Comparing Declared and Operational Identity}
@@ -1077,7 +1104,7 @@ under the containment order.
 \end{remark}
 
 \begin{definition}[Regime Substitution and Hidden Identity Regime]
-  \label{oi.def.hidden}
+  \label{oi.def.regime-substitution}
   A surface \(d\) exhibits \emph{regime substitution} on \(R\)
   when \(\Sib(\tau)=\tau'\neq\varnothing\),
   the regimes differ on \(R\),
@@ -1254,7 +1281,7 @@ and from a single witness pair.
   changes content and leaves structure fixed,
   so it is \BRK{} under \RULEC{} and \PRS{} under \RULES{}
   by Remark~\ref{oi.rem.norefine}.
-  Hence
+  Therefore
   \[
     \pi_{\RULEC}
     =
@@ -1372,11 +1399,99 @@ Section~\ref{oi.sec.worked} shows why the classification matters:
 the repair suggested by sibling alignment
 would leave this fault in place.
 
+\begin{remark}[Non-vacuity of the Classification]
+  \label{oi.rem.nonvacuity}
+  Cases (a) and (b) of Definition~\ref{oi.def.classification}
+  are realized by Example~\ref{oi.ex.loc-obj-fork}
+  and Proposition~\ref{oi.prop.witness-not-alignment}.
+  Cases (c) and (d) also occur under the imported interface,
+  so the four-way classification is not partly empty.
+
+  \emph{Super-sibling (c).}
+  Take \(\tau=\RULEC\), \(\tau'=\RULES\),
+  \(R=\{r_0,r_1,r_2\}\), and
+  \[
+    H
+    =
+    \bigl\langle
+    (\textsf{refine-structure},\,r_0,\,r_1),\;
+    (\textsf{refine-structure},\,r_0,\,r_2)
+    \bigr\rangle.
+  \]
+  Both edges are \PRS{} under \RULEC{} and \BRK{} under \RULES{},
+  so
+  \[
+    \pi_{\RULEC}=\bigl\{\{r_0,r_1,r_2\}\bigr\},
+    \qquad
+    \pi_{\RULES}=\bigl\{\{r_0\},\{r_1\},\{r_2\}\bigr\},
+  \]
+  giving \(\Dsib=\mathrm{diag}(R)\) on the declared class.
+  Let \(d\) be a registered field with
+  \(d(r_0)=d(r_1)=0\) and \(d(r_2)=1\),
+  and a single use of referent-identifier assignment
+  given by \(\tilde{u}(0)=\mathsf{a}\) and \(\tilde{u}(1)=\mathsf{b}\)
+  for distinct referent identifiers \(\mathsf{a}\neq\mathsf{b}\).
+  Then \(\Ker\) has blocks \(\{r_0,r_1\}\) and \(\{r_2\}\), so
+  \[
+    \Dop
+    =
+    \mathrm{diag}(R)\cup\bigl\{(r_0,r_1),(r_1,r_0)\bigr\}
+    \qquad\text{and}\qquad
+    \Dsib\subsetneq\Dop\subsetneq\;\sim_{\RULEC}.
+  \]
+  The surface makes one of the two structural distinctions
+  the sibling makes and omits the other.
+
+  \emph{Sibling-incomparable (d).}
+  Take the same \(\tau,\tau'\),
+  with \(R=\{r_0,r_1,r_2,r_3\}\) and
+  \[
+    H
+    =
+    \bigl\langle
+    (\textsf{revise-wording},\,r_0,\,r_1),\;
+    (\textsf{refine-structure},\,r_0,\,r_2),\;
+    (\textsf{revise-wording},\,r_2,\,r_3)
+    \bigr\rangle.
+  \]
+  All three edges are \PRS{} under \RULEC{},
+  so \(\pi_{\RULEC}=\bigl\{\{r_0,r_1,r_2,r_3\}\bigr\}\).
+  Under \RULES{} the two rewordings are \PRS{}
+  and the refinement is \BRK{},
+  so \(\pi_{\RULES}=\bigl\{\{r_0,r_1\},\{r_2,r_3\}\bigr\}\),
+  and \(\Dsib\) merges \((r_0,r_1)\) and \((r_2,r_3)\).
+  Let \(d\) be a registered field with
+  \(d(r_0)=d(r_2)=0\) and \(d(r_1)=d(r_3)=1\),
+  and a single use of referent-identifier assignment
+  given by \(\tilde{u}(0)=\mathsf{a}\) and \(\tilde{u}(1)=\mathsf{b}\)
+  for distinct referent identifiers \(\mathsf{a}\neq\mathsf{b}\).
+  So \(\Ker\) has blocks \(\{r_0,r_2\}\) and \(\{r_1,r_3\}\).
+  Then
+  \[
+    (r_0,r_1)\in\Dsib\setminus\Dop
+    \qquad\text{and}\qquad
+    (r_0,r_2)\in\Dop\setminus\Dsib,
+  \]
+  so \(\Dop\) and \(\Dsib\) are incomparable.
+  In both constructions surface control holds through the single use,
+  and \(d\) splits the declared class,
+  so the audit returns \FAIL{}.
+\end{remark}
+
 Propositions~\ref{oi.prop.aligned-not-substitution}
 and~\ref{oi.prop.witness-not-alignment}
 bound the diagnostic strength of the audit from both sides.
-A witness does not establish a classification.
-A classification does not establish a basis.
+A witness does not establish a classification, and
+a classification does not establish a basis.
+The audit establishes that the declaration and the implementation
+disagree and, when the sibling comparison is informative,
+where their disagreement lies in the lattice.
+
+Propositions~\ref{oi.prop.aligned-not-substitution}
+and~\ref{oi.prop.witness-not-alignment}
+bound the diagnostic strength of the audit from both sides.
+A witness does not establish a classification and
+a classification does not establish a basis.
 The audit establishes that the declaration and the implementation
 disagree and, when the sibling comparison is informative,
 where their disagreement lies in the lattice.
@@ -1410,8 +1525,26 @@ where their disagreement lies in the lattice.
   faithfulness of \(d\) to \(\tau\) on \(R\),
   existence of a divergence witness,
   and the divergence classification of Definition~\ref{oi.def.classification}
-  are all computable,
-  at cost \(O(|R|^2)\) after the partitions are built.
+  are all computable.
+
+  Let
+  \[
+    n=|R|,
+    \qquad
+    h=|H|,
+    \qquad
+    m=|U_d|.
+  \]
+  Constructing the declared and sibling partitions requires at most \(2h\)
+  calls to the imported classification functions
+  and \(O((n+h)\alpha(n))\) union-find time,
+  where \(\alpha\) is the inverse-Ackermann function.
+  Constructing the operational partition requires \(mn\)
+  identified-use evaluations and grouping the resulting signatures.
+  Once the partitions are built,
+  faithfulness, witness extraction, and divergence classification
+  take at most \(O(n^2)\) time by pair enumeration
+  and expected \(O(n)\) time using block labels and hashing.
 \end{theorem}
 
 \begin{proof}
@@ -1420,9 +1553,14 @@ where their disagreement lies in the lattice.
   using decidability of the classification functions.
   It forms \(\sim_{\tau}\) and \(\sim_{\tau'}\)
   as equivalence closures by union-find over the finite edge sets,
-  giving \(\pi_{\tau}\) and the sibling partition.
+  giving \(\pi_{\tau}\) and the sibling partition
+  in \(O((n+h)\alpha(n))\) union-find time.
+
   It computes \(\IT_d(r)\) for every \(r\in R\)
   and groups records by signature, giving \(\pi_d\).
+  This requires \(mn\) identified-use evaluations.
+  Apart from the costs of evaluating and representing individual outcomes,
+  constructing and hashing the signatures takes expected \(O(mn)\) time.
 
   Faithfulness is the containment
   \(\sim_{\tau}\subseteq\;\Ker\).
@@ -1448,7 +1586,23 @@ where their disagreement lies in the lattice.
   The four possible outcomes are exactly
   the four sibling-relative cases of
   Definition~\ref{oi.def.classification}.
-  Every test enumerates a subset of \(R\times R\) and terminates.
+
+  Pair enumeration gives a deterministic \(O(n^2)\)
+  upper bound for this comparison stage.
+  For the near-linear implementation,
+  assign each record its block labels in
+  \(\pi_{\tau}\), \(\pi_d\), and, when present, \(\pi_{\tau'}\).
+  Faithfulness holds exactly when every declared block
+  has a single operational label;
+  retaining one representative record for each declared block
+  produces a witness when a second label is encountered.
+  The containment \(\Dop\subseteq\Dsib\) holds exactly when
+  every block identified by its declared and operational labels
+  has a single sibling label.
+  The reverse containment holds exactly when
+  every block identified by its declared and sibling labels
+  has a single operational label.
+  Hash tables perform these scans in expected \(O(n)\) time.
 \end{proof}
 
 \subsection{Three-Valued Verdict}
@@ -1543,6 +1697,14 @@ That fact has a consequence for what a passing verdict can be indexed to.
   The audit must be rerun when the transformation history is extended
   or the imported referential-regime interface is revised,
   even when the record domain, the registry, and the surface are unchanged.
+
+  This index records the history and interface dependence only.
+  A pass verdict is additionally relative to
+  the disclosed registry \(D_B\),
+  the evaluated surface family \(A_B\),
+  and the identified uses \(U_d\) of each surface;
+  Section~\ref{oi.sec.disclosure} states those dependences
+  and the witnesses that refute them.
 \end{corollary}
 
 Non-monotonicity distinguishes this audit from a test
@@ -1657,9 +1819,14 @@ Restricting to the declared class gives
 so \(\Dop\subsetneq\Dsib\).
 The classification is sub-sibling divergence.
 
-The surface is not sibling-aligned,
-so by Proposition~\ref{oi.prop.substitution-witness}
-it does not exhibit regime substitution,
+The operational and sibling partitions differ:
+\(\pi_d=\bigl\{\{r_0\},\{r_1\},\{r_2\}\bigr\}\)
+separates \(r_0\) from \(r_2\),
+which \(\pi_{\RULES}=\bigl\{\{r_0,r_2\},\{r_1\}\bigr\}\) merges.
+
+Therefore \(\approx_d\neq{\sim_{\RULES}}\) on \(R\),
+so the surface does not exhibit regime substitution
+(Definition~\ref{oi.def.regime-substitution}),
 and the audit reports no hidden identity regime.
 
 \subsection{Why the Classification Changes the Repair}
@@ -2264,7 +2431,7 @@ and a finite witness that refutes it.
 \label{oi.sec.limits}
 % =============================================================================
 
-The result is bounded in eight ways.
+The result is bounded in nine ways.
 
 First, the audit is relative to the registry.
 It evaluates disclosed or discovered mechanisms
@@ -2342,6 +2509,13 @@ responsibility,
 or institutional legitimacy.
 It preserves a prior condition for examining those questions:
 stable and inspectable reference to what the claims concern.
+
+Ninth, the worked application is illustrative rather than empirical.
+The paper does not evaluate the audit against a deployed record system.
+Such an evaluation would test the practical adequacy of the disclosed registry,
+examined surfaces, identified uses, and record-indexed encodings,
+rather than the finite decidability result established here.
+
 % =============================================================================
 \section{Conclusion}
 \label{oi.sec.conclusion}
