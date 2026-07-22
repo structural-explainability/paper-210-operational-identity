@@ -46,9 +46,14 @@ Get-ChildItem -Path . -Recurse -File | Unblock-File
 .\tools\build\build.ps1
 ```
 
-## Supporting Links
+## Companion Resources
 
-- [Operational Identity: Finite Check Repository](https://doi.org/10.5281/zenodo.21499598)
+- [Operational Identity Verification Repository](https://github.com/structural-explainability/se-verification-operational-identity)
+- [Archived Verification Software (Concept DOI)](https://doi.org/10.5281/zenodo.21499598)
+
+The verification repository provides executable verification of the
+finite procedures, classifications, constructions, algorithmic claims,
+and complexity claims developed in this paper.
 
 ## Annotations
 
@@ -91,6 +96,11 @@ uvx se-manifest-schema validate-manifest --path SE_MANIFEST.toml --strict
    _Referential Regimes: Transformation-Invariant Identity for Neutral Substrates_.
    arXiv:2601.16152.
    <https://arxiv.org/abs/2601.16152>
+
+1. Case, D. M. (2026c).
+   _Structural Explainability Verification: Operational Identity_.
+   Software, version 0.1.0, 2026.
+   <https://doi.org/10.5281/zenodo.21499599>
 
 1. Christen, P. (2012).
    _Data Matching: Concepts and Techniques for Record Linkage, Entity Resolution, and Duplicate Detection_.
