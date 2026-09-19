@@ -60,7 +60,7 @@ and complexity claims developed in this paper.
 
 ## Annotations
 
-[ANNOTATIONS.md](./ANNOTATIONS.md)
+[.annotations/annotations.md](./.annotations/annotations.md)
 
 ## Citation
 
