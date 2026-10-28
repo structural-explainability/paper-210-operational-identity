@@ -14,7 +14,7 @@ message: "If you use this work, please cite the paper below."
 
 title: "Operational Identity: A Finite Audit of Declared and Implemented Rules of Sameness"
 version: "0.1.0"
-date-released: "2026-07-17"
+date-released: "2026-10-28"
 
 authors:
   - family-names: Case
