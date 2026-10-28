@@ -58,7 +58,8 @@ preferred-citation:
       orcid: "https://orcid.org/0000-0001-6165-7389"
       affiliation: "Northwest Missouri State University, School of Computer Science and Information Systems, Maryville, MO, USA"
   year: 2026
-  url: "https://github.com/structural-explainability/paper-210-operational-identity"
+  doi: "10.48550/arXiv.2607.20729"
+  url: "https://arxiv.org/abs/2607.20729"
 
 references:
   - type: article
@@ -71,7 +72,7 @@ references:
     url: "https://doi.org/10.48550/arXiv.2601.14271"
 
   - type: article
-    title: "Referential Regimes: Transformation-Invariant Identity for Neutral Substrates"
+    title: "Referential Regimes: Transformation-Based Identity Profiles for Neutral Substrates"
     authors:
       - family-names: Case
         given-names: Denise M.

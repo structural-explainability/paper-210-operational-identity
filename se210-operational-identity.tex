@@ -41,12 +41,9 @@
 
 \providecommand{\keywords}[1]{\vspace{0.5em}\noindent\textbf{Keywords: }\small #1}
 
-% Transformation classifications
-\newcommand{\PRS}{\ensuremath{\mathsf{PRS}}}
-\newcommand{\BRK}{\ensuremath{\mathsf{BRK}}}
+% Transformation and step-level continuation notation
 \newcommand{\BF}{\ensuremath{\mathsf{BF}}}
-\newcommand{\NEU}{\ensuremath{\mathsf{NEU}}}
-\newcommand{\NAcls}{\ensuremath{\mathsf{N/A}}}
+\newcommand{\Lic}{\ensuremath{\mathrm{Lic}}}
 
 % Split identity regimes imported from Referential Regimes
 \newcommand{\LOC}{\ensuremath{\mathrm{LOC}}}
@@ -58,7 +55,6 @@
 
 % Formal notation
 \newcommand{\Fset}{\ensuremath{\mathcal{F}}}
-\newcommand{\Class}{\ensuremath{\mathrm{Class}}}
 \newcommand{\Sib}{\ensuremath{\mathrm{Sib}}}
 \newcommand{\IT}{\ensuremath{\mathsf{IT}}}
 \newcommand{\Ker}{\ensuremath{\mathrel{\approx_{d}}}}
@@ -103,8 +99,10 @@ Northwest Missouri State University, Maryville, MO, USA}
   A system can apply, consistently and with every record individually correct,
   a rule of sameness that no artifact declares.
   This paper formalizes that implemented relation.
-  A declared identity regime partitions a finite record domain into co-reference classes;
-  a disclosed mechanism, through its typed identity-relevant outcomes, induces an \emph{operational identity partition} of the same domain.
+  A supplied, explicitly warranted declared identity relation partitions a finite record domain
+  into declared co-reference classes;
+  a disclosed mechanism, through its typed identity-relevant outcomes,
+  induces an \emph{operational identity partition} of the same domain.
   The audit compares these partitions in the refinement lattice.
   A mechanism is \emph{faithful} when the declared partition refines the operational partition, so no declared class is split.
   A \emph{divergence witness} is a pair the declaration merges and the mechanism separates; such witnesses are decidable by pair enumeration.
@@ -113,7 +111,9 @@ Northwest Missouri State University, Maryville, MO, USA}
   Global equality of the operational and sibling partitions is defined separately as \emph{regime substitution} and does not follow from sibling alignment.
   A version field incremented on every textual edit inhabits the sub-sibling case by splitting declared classes more finely than either imported basis.
   The audit is three-valued and relative to the disclosed artifacts, evaluated surfaces, and identified uses; each boundary has a finite refuting witness.
-  A passing verdict is non-monotone because extending the transformation history can merge declared classes and create a witness among records already examined.
+  For history-generated declarations,
+  a passing verdict can be overturned when additional licensed continuation steps
+  merge previously separate declared classes.
 \end{abstract}
 
 \keywords{
@@ -162,8 +162,9 @@ A record system answers the question
 twice.
 
 It answers once in its \emph{declaration}.
-The declaration states what must remain fixed for a referent to remain the same,
-and a transformation history then determines which records co-refer.
+The declaration states which records co-refer,
+either directly or through the transformation steps
+that it licenses as identity continuations.
 That answer partitions the records into co-reference classes.
 
 It answers again in its \emph{behavior}.
@@ -198,8 +199,8 @@ This paper names the second partition and makes it computable.
 
 A disclosed implementation mechanism is admitted as an \emph{audit surface}
 when its value determines a typed, finite set of identity-relevant outcomes:
-referent-identifier assignment, referent co-reference, referent persistence,
-transformation classification, applicability selection, or operation admissibility.
+referent-identifier assignment, referent resolution, referent persistence,
+transformation treatment, applicability selection, or operation admissibility.
 The requirement that those outcomes be determined by the mechanism's value
 is what licenses reading a difference in treatment as controlled by it.
 The requirement that the mechanism be drawn from a disclosed registry
@@ -228,8 +229,8 @@ The surface therefore carries an identity distinction the declaration does not.
 
 \subsection{Classifying the Divergence}
 
-Six of the nine imported regimes lie on a sibling axis,
-where a second identity basis is available for the same carrier kind.
+For some declared criteria, an independently specified
+alternative identity criterion is available for comparison.
 When that sibling also splits at least one examined declared class,
 the divergence can be classified.
 Restricting both the operational relation and the sibling relation
@@ -259,11 +260,12 @@ A version field incremented on every textual edit
 splits declared co-reference classes strictly more finely than the sibling.
 Section~\ref{oi.sec.worked} exhibits that case,
 and Proposition~\ref{oi.prop.witness-not-alignment}
-proves it cannot be told from sibling alignment by any single witness pair.
+proves that a divergence witness separating under the sibling
+cannot distinguish it from sibling alignment.
 Diagnosing it as regime substitution would prescribe the wrong repair.
 
-The audit extends to the three regimes with no sibling.
-Faithfulness and divergence are defined for every regime in the inventory.
+The audit also applies when no alternative criterion is supplied.
+Faithfulness and divergence do not require a sibling relation.
 A divergence is unpositioned when no sibling is available
 or when the sibling makes no additional distinction
 within the examined declared classes.
@@ -293,9 +295,9 @@ occupying the sub-sibling case.
 
 Fourth, it proves that a passing verdict is not monotone
 under extension of the transformation history alone.
-Because declared co-reference is a transitive closure,
-adding history to a fixed record domain
-can merge previously separate declared classes
+Adding licensed steps to a fixed record domain
+can only enlarge the declared relation.
+It can therefore merge previously separate declared classes
 and create a witness among records the audit already examined,
 with no change to the surface and no change to those records.
 
@@ -327,30 +329,32 @@ Section~\ref{oi.sec.conclusion} concludes.
 \label{oi.sec.interface}
 % =============================================================================
 
-This paper uses a small interface imported from
-\emph{Neutral Substrates} and \emph{Referential Regimes}.
-The earlier papers supply the neutrality argument,
-carrier inventory, transformation basis,
-identity-basis construction, regime assignments,
-and nine-regime lower bound.
-The present result needs regime-relative classification,
-induced co-reference, and the three sibling axes.
+This paper uses a bounded identity interface motivated by
+\emph{Neutral Substrates} and \emph{Referential Regimes},
+and informed by the Persistence formalization.
+The general audit requires a declared equivalence relation
+and an operational treatment relation on the same record domain.
+A declared relation may be supplied directly or generated
+from individually licensed continuation steps.
+
+The audit does not require a particular identity-regime inventory,
+a lower bound on distinct identity relations,
+or a fixed set of sibling axes.
+Alternative identity criteria may be supplied for conditional
+structural positioning when independently justified.
 
 \subsection{Regimes and Declared Co-reference}
 
-\begin{definition}[Identity Regime]
+\begin{definition}[Declared Identity Criterion]
   \label{oi.def.regime}
-  An \emph{identity regime} \(\rho\) consists of an identity basis
-  and a classification function
-  \[
-    \Class_{\rho}:\Fset\longrightarrow
-    \{\PRS,\BRK,\NEU,\NAcls\}.
-  \]
-  The identity basis states what must remain fixed
-  for a referent to remain the same.
-  The classification function states whether each transformation family
-  preserves identity, breaks identity, is identity-neutral,
-  or is inapplicable under that basis.
+  A declared identity criterion \(\tau\) supplies an
+  equivalence relation on the examined record domain \(R\).
+  The relation expresses which records the declaration
+  treats as presentations of the same referent.
+
+  The criterion is an audit input.
+  Its mathematical properties do not establish that
+  it correctly identifies referents in an external domain.
 \end{definition}
 
 Let a finite family-labeled transformation history be
@@ -366,52 +370,65 @@ when \(H\) is a subsequence of \(H^{\ast}\),
 so \(H^{\ast}\) extends \(H\) without removing or changing
 any transformation already recorded.
 
-\begin{definition}[Non-breaking Edge Set]
+\begin{definition}[Licensed Continuation Edge Set]
   \label{oi.def.nonbreaking}
-  For a regime \(\rho\), define
+  For a history-derived declared criterion \(\tau\), let
+  \(\Lic_{\tau}(f,x,y)\) mean that the performed step
+  \(f:x\to y\) is independently licensed as an identity
+  continuation under \(\tau\).
+
+  Define
   \[
-    E_{\rho}
+    E_{\tau}
     =
     \{
     (x_i,y_i)
     \mid
-    \Class_{\rho}(f_i)\in\{\PRS,\NEU\}
+    \Lic_{\tau}(f_i,x_i,y_i)
     \}.
   \]
 \end{definition}
 
-\begin{remark}[Why Neutral Families Contribute Edges]
+\begin{remark}[Neutrality Does Not License Continuation]
   \label{oi.rem.neutral}
-  A family classified \PRS{} under \(\rho\)
-  acts on the \(\rho\)-identity basis and leaves it fixed.
-  A family classified \NEU{} under \(\rho\) does not act on that basis at all.
-  Neither can separate referents under \(\rho\),
-  so both yield non-breaking edges,
-  for different reasons.
-  Only \BRK{} severs the relation.
-  A family classified \NAcls{} does not apply to the carrier kind,
-  and Definition~\ref{oi.def.precond} excludes it
-  from a well-formed history for records of that kind.
+  A transformation's failure to change a selected invariant
+  does not, by itself, establish continuation of an intended
+  referent. In particular, a family-level neutral or
+  identity-ignoring classification does not automatically
+  contribute an identity edge.
+
+  Continuation requires the applicable licence or another
+  independently justified identity commitment.
+  The licence may distinguish individual steps of the same
+  transformation family.
 \end{remark}
 
 \begin{definition}[Declared Identity Relation and Partition]
   \label{oi.def.declared}
-  The declared identity relation \(\sim_{\rho}\)
-  is the equivalence relation generated by \(E_{\rho}\).
+  The declared identity relation \(\sim_{\tau}\) is a
+  supplied equivalence relation on \(R\).
+
+  When the declaration is constructed from licensed history,
+  \(\sim_{\tau}\) is the equivalence relation generated
+  by \(E_{\tau}\).
+
   Its quotient
   \[
-    \pi_{\rho}
+    \pi_{\tau}
     =
-    R\,/\!\sim_{\rho}
+    R\,/\!\sim_{\tau}
   \]
-  is the \emph{declared identity partition} of the record domain \(R\).
-  Each block is a set of records the regime treats
-  as representations of one referent.
+  is the declared identity partition.
+
+  The partition represents the declared criterion;
+  it does not independently certify identity of
+  real-world referents.
 \end{definition}
 
 \begin{definition}[Core Sibling Axes]
   \label{oi.def.axes}
-  The core sibling axes are
+  For the worked examples, consider the following
+  candidate contrasts of identity criteria:
   \[
     \mathcal{A}
     =
@@ -443,32 +460,33 @@ any transformation already recorded.
   \]
 \end{definition}
 
-\begin{definition}[Imported Referential-Regime Interface]
+\begin{definition}[Operational Identity Interface]
   \label{oi.def.imported-interface}
-  The \emph{imported referential-regime interface} is
+  An \emph{operational identity interface} is
   \[
     \mathfrak{R}
     =
     \bigl(
     \Fset,
     \mathcal{P},
-    \{\Class_{\rho}\}_{\rho\in\mathcal{P}},
+    \{\Lic_{\tau}\}_{\tau\in\mathcal{P}},
     \Sib
     \bigr),
   \]
   where:
   \begin{enumerate}[label=(\alph*)]
-    \item \(\Fset\) is the finite imported transformation-family set;
-    \item \(\mathcal{P}\) is the finite imported regime inventory;
-    \item each
-          \[
-            \Class_{\rho}:
-            \Fset\longrightarrow
-            \{\PRS,\BRK,\NEU,\NAcls\}
-          \]
-          is decidable; and
-    \item \(\Sib\) is the imported partial sibling function.
+    \item \(\Fset\) is a finite set of transformation families;
+    \item \(\mathcal{P}\) is a finite collection of candidate
+          declared identity criteria;
+    \item each \(\Lic_{\tau}\) is a step-level continuation
+          licence, decidable on the examined finite history; and
+    \item \(\Sib\) is an optional, supplied alternative-criterion
+          function used for structural positioning.
   \end{enumerate}
+
+  The general audit also accepts a declared equivalence relation
+  directly, without requiring a transformation history
+  or a sibling criterion.
 \end{definition}
 
 \begin{remark}[Interface Revision]
@@ -481,7 +499,7 @@ any transformation already recorded.
 
   Adding a transformation family,
   adding an identity regime,
-  revising a classification function,
+  revising a continuation licence or supplied declared relation,
   or revising the sibling relation
   produces a new interface version.
   The declared and sibling partitions must then be recomputed,
@@ -498,8 +516,8 @@ any transformation already recorded.
   and decidable.
 \end{remark}
 
-Three regimes in the imported inventory lie on no sibling axis.
-The audit of Section~\ref{oi.sec.compare} decides faithfulness for all nine.
+The audit of Section~\ref{oi.sec.compare} applies to any
+supplied declared equivalence relation satisfying its assumptions.
 Only the diagnosis of a failure uses \(\Sib(\tau)\),
 and Section~\ref{oi.sec.compare} states what is returned
 when \(\Sib(\tau)=\varnothing\).
@@ -507,10 +525,11 @@ when \(\Sib(\tau)=\varnothing\).
 \begin{remark}[Siblings Need Not Refine One Another]
   \label{oi.rem.norefine}
   Neither declared relation on a sibling axis refines the other in general.
+  Suppose the step licences follow the two bases.
   A structural revision preserving rule content
-  is non-breaking under \RULEC{} and breaking under \RULES{}.
+  is then licensed under \RULEC{} and unlicensed under \RULES{}.
   A wording change altering content while preserving section structure
-  is breaking under \RULEC{} and non-breaking under \RULES{}.
+  is unlicensed under \RULEC{} and licensed under \RULES{}.
   The two relations cross.
   The comparison of Section~\ref{oi.sec.compare}
   is therefore carried out inside declared co-reference classes,
@@ -520,53 +539,60 @@ when \(\Sib(\tau)=\varnothing\).
 
 \subsection{Preconditions on the Audit Artifact}
 
-The procedure consumes a declared regime assignment and a family-labeled history.
+The procedure consumes a supplied declared identity relation,
+or a history with step-level continuation licences.
 It does not establish that either is correct.
 
 \begin{definition}[Audit Preconditions]
   \label{oi.def.precond}
   For an examined record domain \(R\)
-  of a single carrier kind with declared regime \(\tau\):
+  and supplied declared criterion \(\tau\):
   \begin{enumerate}[label=(P\arabic*)]
-    \item \emph{Regime determinacy.}
-          Each record in \(R\) has exactly one effective declared regime,
-          and that regime is \(\tau\).
-    \item \emph{History well-formedness.}
-          Every transformation in \(H\) acts on the carrier kind of \(R\),
-          so \(\Class_{\rho}(f_i)\neq\NAcls\) for every \(i\)
-          and every regime \(\rho\) assigned to that kind.
-    \item \emph{History-label validity.}
-          Each family label \(f_i\) accurately names
-          the transformation performed.
-          The declared identity effect of that transformation
-          is obtained by applying
-          \(\Class_{\tau}\) to \(f_i\).
-          Any identity effect applied by the implementation
-          is part of the identity-relevant treatment being audited
-          and is not assumed to agree with the declaration.
+    \item \emph{Declared-relation validity.}
+          The declared relation is an equivalence relation
+          on the specified domain, with its intended
+          interpretation and source identified.
+
+    \item \emph{Continuation warrants.}
+          When the relation is generated from history,
+          every included edge represents an actual
+          transformation step licensed under the
+          declared criterion. A family label alone
+          does not establish continuation.
+
+    \item \emph{Implementation mapping.}
+          The examined mechanisms and identity-relevant
+          uses are identified, and their mapping to
+          treatment outcomes is justified.
+
+    \item \emph{Comparison scope.}
+          The declared and operational relations concern
+          the same examined record domain and an explicitly
+          bounded interpretation of identity treatment.
   \end{enumerate}
+
+  Mathematical satisfaction of these conditions
+  does not independently establish the scientific
+  adequacy of the supplied interpretations.
 \end{definition}
 
 \begin{remark}[Preconditions Are Inputs]
   \label{oi.rem.precond}
-  The preconditions are assumptions on the audit artifact.
-  The declared partition is computed
-  from the regime assignment and the recorded family labels.
-  An indeterminate regime assignment,
-  an unresolved endpoint,
-  an unavailable family label,
-  or a family label that does not accurately name the transformation performed
-  makes the declared partition unreliable.
-  A comparison against an unreliable declared partition
-  carries no information about the surface.
-  Failure to discharge one of those conditions yields \INDET{},
-  not \PASS{} or \FAIL{}.
+  The audit does not establish the correctness of a
+  declaration, the completeness of a history, or the
+  fidelity of observations to an external implementation.
 
-  A difference between the identity effect
-  prescribed by \(\Class_{\tau}(f_i)\)
-  and the identity effect applied by the implementation
-  is not a precondition failure.
-  It is a candidate operational-identity divergence.
+  An unverified continuation licence, unresolved endpoint,
+  unsupported declaration, or unjustified mapping from
+  implementation behavior to an identity-relevant outcome
+  prevents a warranted conformance conclusion.
+
+  Failure to establish an applicable precondition yields
+  \INDET{}, not \PASS{} or \FAIL{}.
+
+  Once the preconditions are discharged, a difference
+  between declared identity and operational treatment
+  is a candidate divergence rather than a precondition failure.
 \end{remark}
 
 % =============================================================================
@@ -617,11 +643,20 @@ The audit must first say what makes a mechanism identity-bearing.
   an auditor could take the identity function on records as a mechanism,
   which separates every distinct pair
   and therefore reports a divergence in any system
-  that does anything at all with two co-referring records.
+  whose declaration merges any two distinct records.
   The registry is what makes a surface an artifact of the implementation
   rather than an artifact of the audit.
   A candidate mechanism must be exhibitable:
   the auditor must be able to identify the implementation artifact that carries it.
+  The same holds for uses.
+  Surface control (Definition~\ref{oi.def.surface}(c)) is satisfied
+  by any function of the mechanism value,
+  so when a registered mechanism is injective on \(R\),
+  a contrived use that returns the record satisfies it
+  and reproduces the identity-function surface.
+  A use must therefore also be exhibitable:
+  the auditor must identify where in the implementation
+  the outcome is produced from the mechanism's value.
 \end{remark}
 
 \begin{definition}[Joint Mechanism]
@@ -952,8 +987,8 @@ It may merge them.
 A divergence witness is an audit finding on its own.
 It shows that identity treatment in the deployed system
 depends on a distinction the declared regime does not make.
-It is available for every regime in the inventory,
-including the three that lie on no sibling axis.
+It is available for any supplied declared equivalence relation,
+including when no alternative identity criterion is available.
 It does not yet say which distinction.
 
 \subsection{Faithfulness Composes}
@@ -1117,11 +1152,21 @@ under the containment order.
     \Ker\;=\;\sim_{\tau'}
     \text{ on }R.
   \]
-  A surface exhibiting regime substitution
-  implements a \emph{hidden identity regime}:
-  a consistently applied, undeclared rule of sameness
-  that the imported inventory already names.
+  Regime substitution establishes extensional equality
+  with the supplied alternative criterion on \(R\).
+  This equality does not establish that the
+  implementation internally selects or intends that criterion.
+  Such an interpretation requires
+  independent evidence about implementation behavior.
 \end{definition}
+
+The following finite examples stipulate the relevant
+declared relations or step-level continuation licences.
+Their purpose is to establish properties of the audit,
+not to prove that the selected identity criteria are
+correct for real-world monitoring stations or legal rules.
+The stipulated continuations require independent
+justification in any empirical application.
 
 \begin{example}[A Forked Continuation on the Locus/Object Axis]
   \label{oi.ex.loc-obj-fork}
@@ -1143,20 +1188,26 @@ under the containment order.
     \bigr\rangle.
   \]
 
-  In the imported referential-regime interface,
+  For this illustrative construction, assume that
+  independently supplied continuation warrants license
+  both fork steps under \LOC{} but neither under \OBJ{}.
+  Thus
   \[
-    \Class_{\LOC}(\BF{})=\PRS
-    \qquad\text{and}\qquad
-    \Class_{\OBJ}(\BF{})=\BRK.
+    E_{\LOC}
+    =
+    \{(r_0,r_1),(r_0,r_2)\},
+    \qquad
+    E_{\OBJ}=\varnothing.
   \]
-  Both fork edges are therefore non-breaking under \LOC{},
-  giving
+  These are explicit assumptions of the example,
+  not unconditional classifications of the fork family.
+  The licensed edges under \LOC{} give
   \[
     \pi_{\LOC}
     =
     \bigl\{\{r_0,r_1,r_2\}\bigr\}.
   \]
-  Both are breaking under \OBJ{},
+  Neither step is licensed under \OBJ{},
   giving
   \[
     \pi_{\OBJ}
@@ -1222,35 +1273,58 @@ nor a single divergence witness establishes it.
 
 \begin{remark}[Regime Substitution Need Not Produce a Splitting Fault]
   \label{oi.rem.merging-substitution}
-  The hypothesis of Proposition~\ref{oi.prop.substitution-witness}
-  is not implied by the requirement that the regimes differ on \(R\),
-  and dropping it makes the proposition false.
+  Proposition~\ref{oi.prop.substitution-witness}
+  requires more than a difference between the declared
+  and alternative identity relations.
+  The alternative must separate at least one pair of records
+  that the declaration treats as equivalent.
+  Without this condition, regime substitution need not
+  produce a divergence witness.
 
-  Suppose the examined history contains only a content amendment
-  preserving section structure,
-  which is \BRK{} under \RULEC{} and \PRS{} under \RULES{}.
-  Then \(\sim_{\RULEC}\) separates the two records
-  and \(\sim_{\RULES}\) merges them,
-  so the regimes differ on \(R\)
-  while \(\sim_{\RULEC}\;\subseteq\;\sim_{\RULES}\).
-  A surface with \(\pi_d=\pi_{\RULES}\)
-  exhibits regime substitution:
-  it globally implements the undeclared sibling basis.
-  It nevertheless splits no declared co-reference class,
-  so by Remark~\ref{oi.rem.asymmetry}
-  it is faithful and the audit returns \PASS{}.
+  Consider an examined history containing only a content
+  amendment that preserves section structure.
+  Suppose the amendment is unlicensed under \RULEC{}
+  but licensed under \RULES{}.
+  The declared relation \(\sim_{\RULEC}\) therefore
+  separates the two records, while
+  \(\sim_{\RULES}\) treats them as equivalent.
+  The relations differ on \(R\), but
+  \[
+    \sim_{\RULEC}\;\subseteq\;\sim_{\RULES}.
+  \]
 
-  The surface is running an identity regime
-  different from the declaration,
-  and it is running it by merging referents the declaration separates,
-  which is the direction this audit does not police.
-  The observation is a limit on the audit rather than a defect in the definitions.
-  A splitting fault is refutable by one pair
-  because no later mechanism can retract a distinction already made.
-  A merging fault is not,
-  because another mechanism in \(A_B\) may carry the distinction,
-  and Definition~\ref{oi.def.store} is where a store-level
-  merging analysis would have to begin.
+  Now consider a surface whose operational partition
+  satisfies \(\pi_d=\pi_{\RULES}\).
+  Its operational relation agrees with the supplied
+  alternative relation throughout the examined domain.
+  The surface therefore merges records that the declaration
+  treats as distinct, but it does not split any declared
+  co-reference class.
+
+  Under the one-sided faithfulness criterion of
+  Remark~\ref{oi.rem.asymmetry}, the surface is faithful.
+  Provided the audit preconditions are satisfied,
+  the verdict is \PASS{}.
+  This equality of partitions does not establish that
+  the implementation internally selects or intends
+  the alternative identity criterion.
+
+  The distinction matters because the audit detects
+  splitting, not merging.
+  A single pair of declared-equivalent records separated
+  by a surface establishes a divergence witness.
+  Adding further mechanisms cannot eliminate that
+  separation from the joint operational treatment.
+  By contrast, a surface that merges declared-distinct
+  records does not establish store-level conflation:
+  another mechanism in \(A_B\) may preserve their distinction.
+
+  Definition~\ref{oi.def.store} provides the starting point
+  for a separate store-level merging analysis.
+  The absence of a splitting fault in this example
+  is therefore a consequence of the audit's deliberately
+  one-sided faithfulness criterion, not a defect
+  in its definitions.
 \end{remark}
 
 \begin{proposition}[Sibling Alignment Does Not Imply Substitution]
@@ -1273,14 +1347,15 @@ nor a single divergence witness establishes it.
     (\textsf{amend-content},\,r_0,\,r_3)
     \bigr\rangle.
   \]
+  Stipulate step licences that follow the two bases
+  (Remark~\ref{oi.rem.neutral}: preserving an invariant does not by itself license a step).
   Structural refinement preserves content and changes structure,
-  so it is \PRS{} under \RULEC{} and \BRK{} under \RULES{}.
+  and is stipulated licensed under \RULEC{} and unlicensed under \RULES{}.
   Content-preserving rewording changes neither,
-  so it is \PRS{} under both.
+  and is stipulated licensed under both.
   A content amendment preserving section structure
   changes content and leaves structure fixed,
-  so it is \BRK{} under \RULEC{} and \PRS{} under \RULES{}
-  by Remark~\ref{oi.rem.norefine}.
+  and is stipulated unlicensed under \RULEC{} and licensed under \RULES{}.
   Therefore
   \[
     \pi_{\RULEC}
@@ -1354,10 +1429,11 @@ nor a single divergence witness establishes it.
     (\textsf{revise-wording},\,r_0,\,r_2)
     \bigr\rangle.
   \]
+  Stipulate step licences that follow the two bases.
   Structural refinement preserves rule content and changes section structure,
-  so it is \PRS{} under \RULEC{} and \BRK{} under \RULES{}.
+  and is stipulated licensed under \RULEC{} and unlicensed under \RULES{}.
   Content-preserving rewording changes neither content nor structure,
-  so it is \PRS{} under both.
+  and is stipulated licensed under both.
   Hence
   \[
     E_{\RULEC}=\{(r_0,r_1),(r_0,r_2)\},
@@ -1418,7 +1494,7 @@ would leave this fault in place.
     (\textsf{refine-structure},\,r_0,\,r_2)
     \bigr\rangle.
   \]
-  Both edges are \PRS{} under \RULEC{} and \BRK{} under \RULES{},
+  Both edges are assumed licensed under \RULEC{} and unlicensed under \RULES{},
   so
   \[
     \pi_{\RULEC}=\bigl\{\{r_0,r_1,r_2\}\bigr\},
@@ -1454,10 +1530,10 @@ would leave this fault in place.
     (\textsf{revise-wording},\,r_2,\,r_3)
     \bigr\rangle.
   \]
-  All three edges are \PRS{} under \RULEC{},
+  All three edges are assumed licensed under \RULEC{},
   so \(\pi_{\RULEC}=\bigl\{\{r_0,r_1,r_2,r_3\}\bigr\}\).
-  Under \RULES{} the two rewordings are \PRS{}
-  and the refinement is \BRK{},
+  Under \RULES{} the two rewordings are assumed licensed
+  and the refinement unlicensed,
   so \(\pi_{\RULES}=\bigl\{\{r_0,r_1\},\{r_2,r_3\}\bigr\}\),
   and \(\Dsib\) merges \((r_0,r_1)\) and \((r_2,r_3)\).
   Let \(d\) be a registered field with
@@ -1499,8 +1575,9 @@ where their disagreement lies in the lattice.
     \item the preconditions of Definition~\ref{oi.def.precond} are discharged;
     \item \(R\) and the relevant transformation history \(H\) are finite;
     \item every history endpoint resolves to a record in \(R\);
-    \item each family \(f_i\) is known and \(\Class_{\rho}(f_i)\) is decidable
-          for each regime assigned to the carrier kind;
+    \item the supplied declared relation is decidable,
+          or the history-derived relation is computable
+          from a finite history and decidable step licences;
     \item \(d\in A_B\), so \(d\in\mathcal{D}_B\)
           and \(d(r)\) and \(\IT_d(r)\) are computable for every \(r\in R\);
     \item surface control is established for \(d\) over \(\mathcal{D}_B\).
@@ -1526,8 +1603,9 @@ where their disagreement lies in the lattice.
     \qquad
     m=|U_d|.
   \]
-  Constructing the declared and sibling partitions requires at most \(2h\)
-  calls to the imported classification functions
+  When both declared and alternative relations are generated
+  from licensed history steps, constructing their partitions
+  requires at most \(2h\) licence evaluations
   and \(O((n+h)\alpha(n))\) union-find time,
   where \(\alpha\) is the inverse-Ackermann function.
   Constructing the operational partition requires \(mn\)
@@ -1539,13 +1617,24 @@ where their disagreement lies in the lattice.
 \end{theorem}
 
 \begin{proof}
-  The checker computes \(E_{\tau}\) and, when \(\Sib(\tau)\neq\varnothing\),
-  \(E_{\tau'}\), from the finite history,
-  using decidability of the classification functions.
-  It forms \(\sim_{\tau}\) and \(\sim_{\tau'}\)
-  as equivalence closures by union-find over the finite edge sets,
-  giving \(\pi_{\tau}\) and the sibling partition
+  For history-derived relations, the checker computes
+  \(E_{\tau}\) and, when an alternative is supplied,
+  \(E_{\tau'}\), from the finite history using
+  decidability of the step licences.
+  Directly supplied decidable equivalence relations
+  may instead be evaluated on the finite domain.
+
+  For history-generated relations, union-find computes
+  the equivalence closures of the licensed edge sets,
+  giving the declared and alternative partitions
   in \(O((n+h)\alpha(n))\) union-find time.
+
+  For directly supplied decidable equivalence relations,
+  the checker instead evaluates the relations on the
+  finite record domain and constructs their partitions.
+  The stated union-find bound applies to the
+  history-generated construction, not to arbitrary
+  supplied equivalence predicates.
 
   It computes \(\IT_d(r)\) for every \(r\in R\)
   and groups records by signature, giving \(\pi_d\).
@@ -1596,6 +1685,33 @@ where their disagreement lies in the lattice.
   Hash tables perform these scans in expected \(O(n)\) time.
 \end{proof}
 
+\begin{proposition}[Edge Characterization of Faithfulness]
+  \label{oi.prop.edges}
+  Let \(\sim_{\tau}\) be generated by \(E_{\tau}\)
+  (Definition~\ref{oi.def.declared}).
+  A surface \(d\) is faithful to \(\tau\) on \(R\)
+  if and only if \(\IT_d(x)=\IT_d(y)\) for every \((x,y)\in E_{\tau}\).
+  Consequently, when \(d\) is not faithful,
+  some licensed edge \((x,y)\in E_{\tau}\) is a divergence witness,
+  and \(d(x)\neq d(y)\) for that edge.
+\end{proposition}
+
+\begin{proof}
+  If \(d\) is faithful, every edge lies in \(\sim_{\tau}\) and so in \(\Ker\).
+  Conversely, \(\Ker\) is an equivalence relation containing \(E_{\tau}\),
+  so it contains the equivalence relation \(\sim_{\tau}\) that \(E_{\tau}\) generates.
+  The second statement is the contrapositive,
+  with Lemma~\ref{oi.lem.determined} giving \(d(x)\neq d(y)\).
+\end{proof}
+
+Faithfulness of a history-derived declaration is therefore decided
+by \(h\) signature comparisons, without forming the closure.
+The closure is still needed for the partition \(\pi_{\tau}\),
+for witnesses between records that no single step joins,
+and for the classification of Definition~\ref{oi.def.classification}.
+It plays no role in whether a passing verdict is lost under extension
+(Proposition~\ref{oi.prop.nonmonotone}).
+
 \subsection{Three-Valued Verdict}
 
 \begin{definition}[Audit Verdict]
@@ -1610,7 +1726,7 @@ where their disagreement lies in the lattice.
           and with a witness pair;
     \item \INDET{} when a precondition is not discharged,
           surface control cannot be established over \(\mathcal{D}_B\),
-          a family label is unavailable or unverified,
+          a step licence is unavailable or unverified,
           or an identity-relevant outcome cannot be computed
           for some record in \(R\).
   \end{itemize}
@@ -1629,8 +1745,10 @@ where their disagreement lies in the lattice.
 
 \subsection{Passing Is Not Monotone}
 
-The declared partition is built by transitive closure.
-That fact has a consequence for what a passing verdict can be indexed to.
+When the declared partition is generated from licensed
+history steps, it is built by equivalence closure.
+That construction has a consequence for what a passing
+verdict can be indexed to.
 
 \begin{proposition}[Non-monotonicity of \PASS{} under History Extension]
   \label{oi.prop.nonmonotone}
@@ -1665,7 +1783,8 @@ That fact has a consequence for what a passing verdict can be indexed to.
     (g,\,t,\,s)
     \bigr\rangle,
   \]
-  where \(f\) and \(g\) are families non-breaking under \(\tau\).
+  where both performed steps are licensed as continuations
+  under \(\tau\).
   The record domain is still \(R\),
   and both endpoints of both transformations lie in it.
   Now \((r,t)\) and \((t,s)\) lie in \(E_{\tau}\),
@@ -1675,6 +1794,10 @@ That fact has a consequence for what a passing verdict can be indexed to.
   so the signatures are unchanged
   and \(\IT_d(r)\neq\IT_d(s)\) still holds.
   The pair \((r,s)\) is now a divergence witness on \((R,H^{\ast})\).
+  The edge \((r,t)\) is a witness as well,
+  since one licensed step joins records that \(d\) separates,
+  so by Proposition~\ref{oi.prop.edges}
+  the closure is not needed for the pass to be lost.
 \end{proof}
 
 \begin{corollary}[Indexing of a Passing Verdict]
@@ -1700,9 +1823,10 @@ That fact has a consequence for what a passing verdict can be indexed to.
 
 Non-monotonicity distinguishes this audit from a test
 whose passing result is stable under the arrival of new data.
-With \(R\) and the operational signatures fixed,
-the declared partition can only coarsen
-as history accumulates.
+For a fixed continuation licence and record domain,
+with operational signatures unchanged, the
+history-generated declared partition can only coarsen
+as licensed edges accumulate.
 That coarsening can create divergence witnesses
 but cannot remove an existing one.
 An operator who obtains a passing verdict
@@ -1742,7 +1866,7 @@ while preserving both content and section structure.
 
 The system declares content-fixed rule identity, \(\RULEC\).
 Its imported sibling is structure-fixed rule identity, \(\RULES\).
-By the classification used in
+By the licences stipulated in
 Proposition~\ref{oi.prop.witness-not-alignment},
 the declared partition is the single block
 \[
@@ -2209,9 +2333,10 @@ who has no view on which records truly co-refer.
 Co-reference is derived differently.
 Entity resolution derives it from attribute similarity
 across a pair of records considered on their own.
-The declared partition here is derived from a transformation history:
-records co-refer when a chain of transformations connects them,
-each of whose families is non-breaking under the declared basis.
+A declared partition may be supplied directly or derived
+from a history of individually licensed continuation steps.
+A transformation family label alone does not establish
+co-reference or persistence.
 Two records with identical attributes may fail to co-refer
 when no history connects them,
 and two records with quite different attributes may co-refer
@@ -2221,7 +2346,7 @@ The object under evaluation differs.
 Entity resolution evaluates a matching function.
 This paper evaluates a partition induced by an implementation mechanism
 against a partition induced by a declared identity regime,
-and diagnoses their divergence against an inventory of identity bases.
+and, when a sibling criterion is supplied, locates their divergence against it.
 Where entity resolution asks how well a matcher performs,
 this paper asks which rule of sameness a system is running.
 
@@ -2238,9 +2363,11 @@ A complete provenance history may record
 that one artifact was derived from another
 without stating whether the transformation preserved
 or broke identity under the system's chosen basis.
-The present result uses family-labeled histories
-to derive the declared partition,
-and then compares that partition with behavior.
+The present result accepts an explicit declared identity relation.
+When that relation is history-derived, its generating
+continuations require independently justified licences.
+The audit then compares the declared relation with
+the implementation-induced treatment relation.
 The question is not only what happened,
 but which rule of sameness the system operationally applied.
 
@@ -2380,7 +2507,7 @@ and what it is observed to do~\citep{otsuka2026identity}.
 Their declaration-observation gap is closely related.
 The present result isolates one formal instance of it,
 gives the observed side a computable form,
-and classifies the gap against an inventory of identity bases.
+and, when a sibling criterion is supplied, classifies the gap against it.
 
 \subsection{Distinct Contribution}
 
@@ -2397,7 +2524,7 @@ The contribution is the conjunction of five elements:
   \item faithfulness as a refinement relation
         between declared and operational partitions,
         with a finite witness refuting it,
-        available for every regime in the inventory;
+        available for every supplied declared equivalence relation;
   \item a four-way lattice classification of divergence,
         when the sibling is informative inside the declared classes,
         separated from the global condition of regime substitution
@@ -2453,13 +2580,17 @@ The operational partition is computed from disclosed behavior,
 and it is the rule of sameness the mechanism applies
 only under the claim of Definition~\ref{oi.def.usecomplete}.
 
-Fourth, the declared partition depends on
-the accuracy and completeness of the family-labeled history,
-which Definition~\ref{oi.def.precond} states as a precondition.
-An inaccurate or incomplete history prevents the artifact from representing the examined transformations,
-and the correct verdict is \INDET{}.
+Fourth, the declared identity relation is a supplied
+equivalence relation whose intended interpretation requires
+independent justification.
+When the relation is generated from transformation history,
+the recorded steps and their continuation licences
+must be adequately established.
+An unsupported declaration or unverified history-derived
+relation yields \INDET{}, not a conformance judgment.
 
-Fifth, the classification is relative to the imported inventory,
+Fifth, structural positioning is relative to an explicitly
+supplied alternative identity criterion,
 and it is local to the declared co-reference classes.
 When the sibling also splits an examined declared class,
 the four cases of Definition~\ref{oi.def.classification}
@@ -2480,14 +2611,14 @@ for the reason given in Remark~\ref{oi.rem.asymmetry}.
 Conflation of declared-distinct referents at the level of the store
 is a real failure and is outside the scope of a single-surface audit.
 
-Seventh, verdicts are indexed to \((R,H)\).
+Seventh, verdicts are relative to the supplied declaration,
+examined domain, implementation surfaces, and identified uses.
+For declarations generated from licensed history,
 Proposition~\ref{oi.prop.nonmonotone} shows
-that a passing verdict can be overturned
-by extending the history alone,
-with the record domain held fixed.
-A surface faithful on the examined artifact
-may diverge on a larger one,
-and the classification of a divergence may change with it.
+that extending the history can overturn a passing verdict,
+even when the record domain and operational treatment remain unchanged.
+A passing audit therefore does not certify continued
+conformance after its underlying inputs change.
 
 Eighth, the procedure decides no downstream substantive question.
 It does not choose the correct identity basis,
@@ -2545,10 +2676,10 @@ and the identity-relevant uses identified in each \(U_d\).
 Each level carries a completeness claim that the procedure cannot discharge and a finite witness that refutes it.
 
 A passing verdict is also history-relative.
-Because declared co-reference is a transitive closure,
-extending the history alone,
+Adding licensed steps can only enlarge the declared relation.
+Extending the history alone,
 with the record domain and operational treatment unchanged,
-can merge declared classes
+can therefore merge declared classes
 and create a witness among records already examined.
 A passing audit is a statement about a history,
 not a certificate about a store.
@@ -2590,8 +2721,21 @@ The implementation does not discover
 mechanisms, evaluate a deployed system, or discharge the completeness
 claims of Section~\ref{oi.sec.disclosure}.
 
+A Lean~4 formalization of the audit kernel
+(faithfulness, divergence witnesses, store composition,
+local position relative to a supplied alternative,
+finite decision, and the three-valued verdict)
+is available at
+\url{https://github.com/structural-explainability/se-theory-operational-identity}.
+It does not formalize the complexity bounds of Theorem~\ref{oi.thm.decidable},
+the completeness claims and omitted-artifact witnesses of
+Section~\ref{oi.sec.disclosure},
+or the worked examples of this paper.
+
 \subsection*{Use of AI-Assisted Tools}
-AI-assisted tools were used for editing, formatting, and consistency checking.
+AI-assisted tools were used for editing, formatting, and consistency checking,
+and in developing and reviewing mathematical definitions, proofs,
+and the companion Lean~4 formalization.
 The author reviewed all suggestions and is solely responsible for the content.
 
 \subsection*{Declaration of Conflicting Interest}
@@ -2617,7 +2761,7 @@ The author declares no potential conflicts of interest.
 
   \bibitem[Case(2026b)]{case2026referential}
   D.\ M.\ Case.
-  \emph{Referential Regimes: Transformation-Invariant Identity for Neutral Substrates}.
+  \emph{Referential Regimes: Transformation-Based Identity Profiles for Neutral Substrates}.
   arXiv preprint \href{https://arxiv.org/abs/2601.16152}{arXiv:2601.16152}, 2026.
 
   \bibitem[Case(2026c)]{case2026oiverification}
@@ -2666,7 +2810,8 @@ The author declares no potential conflicts of interest.
   \bibitem[Gangemi et al.(2002)]{gangemi2002dolce}
   A.\ Gangemi, N.\ Guarino, C.\ Masolo, A.\ Oltramari, and L.\ Schneider.
   Sweetening ontologies with DOLCE.
-  In \emph{Knowledge Engineering and Knowledge Management: Ontologies and the Semantic Web (EKAW 2002)}, volume 2473 of LNCS, pages 166--181. Springer, 2002.
+  In \emph{Knowledge Engineering and Knowledge Management: Ontologies and the Semantic Web (EKAW 2002)},
+  volume 2473 of LNCS, pages 166--181. Springer, 2002.
 
   \bibitem[Getoor and Machanavajjhala(2012)]{getoor2012er}
   L.\ Getoor and A.\ Machanavajjhala.

@@ -51,12 +51,16 @@ Get-ChildItem -Path . -Recurse -File | Unblock-File
 
 ## Companion Resources
 
+- [Operational Identity Theory (Lean 4)](https://github.com/structural-explainability/se-theory-operational-identity)
 - [Operational Identity Verification Repository](https://github.com/structural-explainability/se-verification-operational-identity)
 - [Archived Verification Software (Concept DOI)](https://doi.org/10.5281/zenodo.21499598)
 
-The verification repository provides executable verification of the
-finite procedures, classifications, constructions, algorithmic claims,
-and complexity claims developed in this paper.
+The verification repository provides executable checks of the
+finite procedures, classifications, constructions, and algorithms
+developed in this paper.
+It compares independent implementations on worked examples and finite test instances.
+The asymptotic complexity bounds are argued in the paper and
+not formally verified by executable checks.
 
 ## Annotations
 
@@ -96,7 +100,7 @@ uvx se-manifest-schema validate-manifest --path SE_MANIFEST.toml --strict
    <https://arxiv.org/abs/2601.14271>
 
 1. Case, D. M. (2026b).
-   _Referential Regimes: Transformation-Invariant Identity for Neutral Substrates_.
+   _Referential Regimes: Transformation-Based Identity Profiles for Neutral Substrates_.
    arXiv:2601.16152.
    <https://arxiv.org/abs/2601.16152>
 

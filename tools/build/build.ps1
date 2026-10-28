@@ -5,6 +5,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$PaperTex = "se210-operational-identity.tex"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # -----------------------------------------------------------------------------
@@ -141,7 +142,6 @@ Assert-Command "latexmk"
 
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 $PaperDir = $RepoRoot
-$PaperTex = "se210-operational-identity.tex"
 $null = Resolve-ExistingPath (Join-Path $PaperDir $PaperTex) "paper TeX file"
 
 # -----------------------------------------------------------------------------
@@ -158,7 +158,7 @@ if (-not $NoClean) {
 # Build Standard (fail-fast)
 # -----------------------------------------------------------------------------
 
-Invoke-OrStop { Build-Paper -PaperDir $PaperDir -TexFile $PaperTex -Name "Paper" -RepoRoot $RepoRoot } `
+Invoke-OrStop { Build-Paper -PaperDir $PaperDir -TexFile $PaperTex -Name $PaperTex -RepoRoot $RepoRoot } `
     "Stopping: Paper standard build failed."
 
 Write-Ok ""

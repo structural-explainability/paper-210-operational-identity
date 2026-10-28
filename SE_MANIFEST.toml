@@ -34,16 +34,19 @@ role = "justification-conformance"
 
 [depends]
 required = [
-    { repo = "paper-100-neutral-substrate", kind = "semantic", reason = "Uses the stable-reference requirement, neutrality-by-design constraint, attribution boundary, and distinction between foundational reference and downstream interpretation established in Neutral Substrates." },
-    { repo = "paper-200-identity-regimes", kind = "semantic", reason = "Imports the transformation-family set, regime inventory, regime-relative classification functions, sibling relation, and induced co-reference construction used to compute declared and sibling identity partitions." },
+    { repository = "paper-100-neutral-substrate", kind = "semantic", reason = "Uses the stable-reference requirement, neutrality-by-design constraint, attribution boundary, and distinction between foundational reference and downstream interpretation established in Neutral Substrates." },
+    { repository = "paper-200-identity-regimes", kind = "semantic", reason = "Uses candidate identity bases and transformation contrasts as motivating examples. The general audit accepts supplied equivalence relations and does not require a fixed regime inventory or family-level classifications to license identity continuation." },
 ]
-optional = []
+optional = [
+    { repository = "se-theory-operational-identity", kind = "semantic", reason = "Lean 4 formalization of the audit kernel (declared relation, surfaces, faithfulness, divergence witnesses, composition, local position, finite check, verdict) against which this paper's definitions are stated." },
+    { repository = "se-theory-persistence", kind = "semantic", reason = "Generated identity relations and step-level licences used to state faithfulness over history-generated declarations." },
+]
 
 # === Provided Artifacts ===
 
 [provides]
 artifacts = [
-    "ANNOTATIONS.md",
+    ".annotations/annotations.md",
     "CITATION.cff",
     "LICENSE",
     "README.md",
@@ -55,30 +58,34 @@ artifacts = [
 
 [scope]
 includes = [
-    "declared identity partitions",
+    "supplied declared identity relations and partitions",
+    "history-derived declared relations from individually licensed continuation steps",
+    "separation of declared identity, operational treatment, and referent identity",
+    "explicit scientific warrants for interpreting formal audit inputs",
     "operational identity partitions",
-    "operational rules of sameness",
+    "implementation-induced identity-relevant treatment",
     "mechanism registries",
     "joint mechanisms",
     "examined audit-surface families",
     "identity-relevant outcome types",
     "record-indexed identity-treatment signatures",
     "surface-control factorization",
-    "faithfulness by partition refinement",
+    "faithfulness as containment of the declared relation in operational treatment equivalence",
     "finite divergence witnesses",
-    "sibling-relative divergence positioning",
+    "edge characterization of faithfulness for history-generated declarations",
+    "conditional divergence positioning relative to a supplied alternative identity criterion",
     "sibling-aligned divergence",
     "sub-sibling divergence",
     "super-sibling divergence",
     "sibling-incomparable divergence",
-    "global regime substitution",
-    "hidden identity regimes as global partition equality",
+    "global partition equality relative to a supplied alternative identity criterion",
+    "conditional interpretation of global partition equality as regime substitution",
     "store operational partitions",
     "composition of surface faithfulness",
-    "three-valued audit verdicts",
-    "finite decidability",
-    "history-relative passing verdicts",
-    "non-monotonicity under transformation-history extension",
+    "three-valued audit verdicts under explicit preconditions and warrants",
+    "finite decidability under explicit decidability assumptions",
+    "audit verdicts relative to supplied declarations, domains, surfaces, uses, and applicable histories",
+    "non-monotonicity of passing verdicts under extension of licensed history-generated declarations",
     "registry-completeness claims",
     "examined-family-completeness claims",
     "use-completeness claims",
@@ -86,10 +93,10 @@ includes = [
     "omitted-surface witnesses",
     "omitted-use witnesses",
     "disclosure-relative audit boundaries",
-    "imported referential-regime interface",
-    "downstream reevaluation after referential-regime interface revision",
-    "legal-alignment worked example",
-    "integration with provenance, schema, workflow, configuration, and versioning artifacts",
+    "generic operational-identity interface with optional alternative identity criteria",
+    "reevaluation following changes to declared relations, licences, histories, or examined implementation behavior",
+    "conditional legal-alignment worked example with stipulated identity warrants",
+    "identity-relevant mechanisms illustrated through provenance, schema, workflow, configuration, and versioning artifacts",
 ]
 
 excludes = [
@@ -99,6 +106,11 @@ excludes = [
     "proof that an examined surface family is complete",
     "proof that all identity-relevant uses have been identified",
     "automatic discovery of arbitrary implementation mechanisms",
+    "automatic identity continuation from neutral or identity-ignoring transformation classifications",
+    "unconditional identity continuation from transformation-family labels",
+    "inference that local sibling alignment proves global regime substitution",
+    "scientific validation of supplied continuation licences or identity criteria",
+    "certification that observed implementation treatment represents all operational identity behavior",
     "general source-code analysis method",
     "general entity-resolution method",
     "store-level conflation analysis for declared-distinct referents",
@@ -110,7 +122,7 @@ excludes = [
     "replacement for existing record stores",
     "production data format specification",
     "binding implementation standard",
-    "upper-bound claim for identity regimes",
+    "lower- or upper-bound claims about scientifically distinct identity regimes",
     "completeness claim for transformation families",
     "general theory of accountability",
     "domain ontology design",
